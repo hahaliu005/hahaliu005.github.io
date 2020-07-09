@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2016-08-05-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/05/2016-08-05-01/" class="article-date">
+  <time datetime="2016-08-05T00:00:00.000Z" itemprop="datePublished">2016-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/05/2016-08-05-01/">设计模式--组合模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>将对象组合成树形结构以表示’部分-整体’的层次结构,使得用户对单个对象和组合对象的使用具有一致性</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>下面的示例展示了老板-管理者-雇员的层级关系:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 组合模式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Corp</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $name;</span><br><span class="line">    <span class="keyword">private</span> $position;</span><br><span class="line">    <span class="keyword">private</span> $salary;</span><br><span class="line">    <span class="keyword">private</span> $parent;</span><br><span class="line">    <span class="keyword">private</span> $children = [];</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(string $name, string $position, int $salary)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;position = $position;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;salary = $salary;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="string">'name'</span> =&gt; <span class="keyword">$this</span>-&gt;name,</span><br><span class="line">            <span class="string">'position'</span> =&gt; <span class="keyword">$this</span>-&gt;position,</span><br><span class="line">            <span class="string">'salary'</span> =&gt; <span class="keyword">$this</span>-&gt;salary,</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(Corp $corp)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;children[] = $corp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">remove</span><span class="params">(Corp $corp)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;children <span class="keyword">as</span> $index =&gt; $child) &#123;</span><br><span class="line">            <span class="keyword">if</span> ($child === $child) &#123;</span><br><span class="line">                <span class="keyword">unset</span>(<span class="keyword">$this</span>-&gt;children[$index]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getChildren</span><span class="params">()</span>: <span class="title">array</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;children;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setParent</span><span class="params">(Corp $parent)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;parent = $parent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getParent</span><span class="params">()</span>: <span class="title">Corp</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;parent;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Leaf</span> <span class="keyword">extends</span> <span class="title">Corp</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Branch</span> <span class="keyword">extends</span> <span class="title">Corp</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$boss = <span class="keyword">new</span> Branch(<span class="string">'bossName'</span>, <span class="string">'boss'</span>, <span class="number">10000</span>);</span><br><span class="line">$manager = <span class="keyword">new</span> Branch(<span class="string">'managerName'</span>, <span class="string">'manager'</span>, <span class="number">1000</span>);</span><br><span class="line">$employ = <span class="keyword">new</span> Leaf(<span class="string">'employName'</span>, <span class="string">'employ'</span>, <span class="number">100</span>);</span><br><span class="line">$employ2 = <span class="keyword">new</span> Leaf(<span class="string">'employ2Name'</span>, <span class="string">'employ'</span>, <span class="number">90</span>);</span><br><span class="line"></span><br><span class="line">$manager-&gt;add($employ);</span><br><span class="line">$manager-&gt;add($employ);</span><br><span class="line"></span><br><span class="line">$boss-&gt;add($manager);</span><br><span class="line"></span><br><span class="line">var_dump($boss-&gt;getInfo());</span><br><span class="line">var_dump($boss-&gt;getChildren());</span><br><span class="line"></span><br><span class="line">var_dump($manager-&gt;getInfo());</span><br><span class="line">var_dump($manager-&gt;getChildren());</span><br><span class="line"></span><br><span class="line">var_dump($employ-&gt;getInfo());</span><br><span class="line">var_dump($employ-&gt;getChildren());</span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点与应用"><a href="#优缺点与应用" class="headerlink" title="优缺点与应用"></a>优缺点与应用</h2><p>高层模块调用简单;节点可自由增加</p>
+<p>适用于使用在维护与实现树形结构的场景中</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/05/2016-08-05-01/" data-id="ckce4u35p00161mxohwo7anda" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/" rel="tag">design pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-08-04-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/04/2016-08-04-01/" class="article-date">
+  <time datetime="2016-08-04T00:00:00.000Z" itemprop="datePublished">2016-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/04/2016-08-04-01/">设计模式--迭代器模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>提供一种方法访问一个容器对象中各个元素,而又不需暴露该对象的内部细节.</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>一个简单的可以遍历一个数组的示例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 迭代器模式示例</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IMyIterator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">current</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyIterator</span> <span class="keyword">implements</span> <span class="title">IMyIterator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $arr;</span><br><span class="line">    <span class="keyword">private</span> $index;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(array $arr)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;arr = $arr;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;index = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">current</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;arr[<span class="keyword">$this</span>-&gt;index];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (! <span class="keyword">$this</span>-&gt;hasNext()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;arr[++ <span class="keyword">$this</span>-&gt;index];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hasNext</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;arr[<span class="keyword">$this</span>-&gt;index + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$array = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>];</span><br><span class="line">$iter = <span class="keyword">new</span> MyIterator($array);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'current: '</span> . $iter-&gt;current() . <span class="string">"\n"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'next: '</span> . $iter-&gt;next() . <span class="string">"\n"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'hasNext: '</span> . $iter-&gt;hasNext() . <span class="string">"\n"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'next: '</span> . $iter-&gt;next() . <span class="string">"\n"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'hasNext: '</span> . (int) $iter-&gt;hasNext() . <span class="string">"\n"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'next: '</span> . $iter-&gt;next() . <span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点与应用"><a href="#优缺点与应用" class="headerlink" title="优缺点与应用"></a>优缺点与应用</h2><p>一般的高级语言都已经有一个完事的迭代器, 比如PHP语言已经有了Iterator接口</p>
+<p>所以, 一般情况下没必要自己实现, 最多将接口实现就可以了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/04/2016-08-04-01/" data-id="ckce4u35p00141mxo3bh93e5k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/" rel="tag">design pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-08-03-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/03/2016-08-03-01/" class="article-date">
+  <time datetime="2016-08-03T00:00:00.000Z" itemprop="datePublished">2016-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/03/2016-08-03-01/">设计模式--适配器模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>将一个类的接口变换的成客户端所期待的另一种接口, 从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作.</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>下面是将两个不同的获取用户信息类的接口进行适配的示例:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 适配器模式示例</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IUserInfo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserName</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getHomeAddress</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getMobileNumber</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getOfficeTelNumber</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getJobPosition</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getHomeTelNumber</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> <span class="keyword">implements</span> <span class="title">IUserInfo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getHomeAddress</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'userinfo homeaddress'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getHomeTelNumber</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'userinfo hometelnumber'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getJobPosition</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'userinfo jobposition'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getMobileNumber</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'userinfo mobilenumber'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getOfficeTelNumber</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'userinfo officetelnumber'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserName</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'userinfo username'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IOuterUser</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserBaseInfo</span><span class="params">()</span>: <span class="title">array</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserOfficeInfo</span><span class="params">()</span>: <span class="title">array</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserHomeInfo</span><span class="params">()</span>: <span class="title">array</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterUser</span> <span class="keyword">implements</span> <span class="title">IOuterUser</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserBaseInfo</span><span class="params">()</span>: <span class="title">array</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="string">'userName'</span> =&gt; <span class="string">'outeruser username'</span>,</span><br><span class="line">            <span class="string">'mobileNumber'</span> =&gt; <span class="string">'outeruser mobilenumber'</span>,</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserOfficeInfo</span><span class="params">()</span>: <span class="title">array</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="string">'jobPosition'</span> =&gt; <span class="string">'outeruser jobposition'</span>,</span><br><span class="line">            <span class="string">'officeTelNumber'</span> =&gt; <span class="string">'outeruser officetelnumber'</span>,</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserHomeInfo</span><span class="params">()</span>: <span class="title">array</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="string">'homeTelNumber'</span> =&gt; <span class="string">'outeruser hometelnumber'</span>,</span><br><span class="line">            <span class="string">'homeAddress'</span> =&gt; <span class="string">'outeruser homeaddress'</span>,</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterUserInfo</span> <span class="keyword">extends</span> <span class="title">OuterUser</span> <span class="keyword">implements</span> <span class="title">IUserInfo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $baseInfo;</span><br><span class="line">    <span class="keyword">public</span> $homeInfo;</span><br><span class="line">    <span class="keyword">public</span> $officeInfo;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;baseInfo = <span class="keyword">$this</span>-&gt;getUserBaseInfo();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;homeInfo = <span class="keyword">$this</span>-&gt;getUserHomeInfo();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;officeInfo = <span class="keyword">$this</span>-&gt;getUserOfficeInfo();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserName</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;baseInfo[<span class="string">'userName'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getHomeAddress</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;homeInfo[<span class="string">'homeAddress'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getMobileNumber</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;baseInfo[<span class="string">'mobileNumber'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getOfficeTelNumber</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;officeInfo[<span class="string">'officeTelNumber'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getJobPosition</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;officeInfo[<span class="string">'jobPosition'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getHomeTelNumber</span><span class="params">()</span>: <span class="title">string</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;homeInfo[<span class="string">'homeTelNumber'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$userInfo = <span class="keyword">new</span> UserInfo();</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'userinfo: '</span> . $userInfo-&gt;getMobileNumber() . <span class="string">"\n"</span>;</span><br><span class="line"></span><br><span class="line">$outUserInfo = <span class="keyword">new</span> OuterUserInfo();</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'outuserinfo: '</span> . $outUserInfo-&gt;getMobileNumber() . <span class="string">"\n"</span>;</span><br><span class="line"><span class="comment">/* output</span></span><br><span class="line"><span class="comment">userinfo: userinfo mobilenumber</span></span><br><span class="line"><span class="comment">outuserinfo: outeruser mobilenumber</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点与应用"><a href="#优缺点与应用" class="headerlink" title="优缺点与应用"></a>优缺点与应用</h2><p>适配器模式可以让两个没有任何关系的类在一起运行,只要适配器这个角色能够搞定他们就成;增加了类的透明性;提高了类的复用度;灵活性很好,可随意增删.</p>
+<p>适用于在已经投产中的接口不匹配时, 为两个不兼容的类建立关系适配</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/03/2016-08-03-01/" data-id="ckce4u35n00111mxo3z06dpa9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/" rel="tag">design pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-08-02-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/02/2016-08-02-01/" class="article-date">
+  <time datetime="2016-08-02T00:00:00.000Z" itemprop="datePublished">2016-08-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/02/2016-08-02-01/">设计模式--策略模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>定义一组算法, 将每个算法都封装起来, 并且使它们之间可以互换</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>下面是一个根据不同的符号采取不同的运算的示例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Calculator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> ADD_SYMBOL = <span class="string">'+'</span>;</span><br><span class="line">    <span class="keyword">const</span> SUB_SYMBOL = <span class="string">'-'</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">exec</span><span class="params">(int $a, int $b)</span>:<span class="title">int</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Add</span> <span class="keyword">implements</span> <span class="title">Calculator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">exec</span><span class="params">(int $a, int $b)</span>:<span class="title">int</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> $a + $b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">implements</span> <span class="title">Calculator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">exec</span><span class="params">(int $a, int $b)</span>:<span class="title">int</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> $a - $b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Context</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $cal = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Calculator $cal)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;cal = $cal;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">exec</span><span class="params">(int $a, int $b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;cal-&gt;exec($a, $b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$a = random_int(<span class="number">1</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">$symbols = [Calculator::ADD_SYMBOL, Calculator::SUB_SYMBOL];</span><br><span class="line">$symbol = $symbols[array_rand($symbols)];</span><br><span class="line"></span><br><span class="line">$b = random_int(<span class="number">1</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> ($symbol) &#123;</span><br><span class="line">    <span class="keyword">case</span> Calculator::ADD_SYMBOL:</span><br><span class="line">        $context = <span class="keyword">new</span> Context(<span class="keyword">new</span> Add());</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> Calculator::SUB_SYMBOL;</span><br><span class="line">        $context = <span class="keyword">new</span> Context(<span class="keyword">new</span> Sub());</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">$result = $context-&gt;exec($a, $b);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'$a: '</span> . $a . <span class="string">' $b: '</span> . $b . <span class="string">"\n"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'$symbol: '</span> . $symbol . <span class="string">"\n"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'result: '</span> . $result;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* output</span></span><br><span class="line"><span class="comment">$a: 5 $b: 9</span></span><br><span class="line"><span class="comment">$symbol: +</span></span><br><span class="line"><span class="comment">result: 14</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点与应用"><a href="#优缺点与应用" class="headerlink" title="优缺点与应用"></a>优缺点与应用</h2><p>算法可以自由切换, 避免了使用多重条件判断, 扩展性良好</p>
+<p>但是策略类会变得很多, 而且所有策略类都需要对外暴露, 一般需要与其它模式混用以达到良好的效果</p>
+<p>适应于多个类只有在算法或行为上稍有不同的场景;算法需要自由切换的场景;需要屏蔽算法规则的场景</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/02/2016-08-02-01/" data-id="ckce4u35n000z1mxogalqatgu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/" rel="tag">design pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-07-19-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/19/2016-07-19-01/" class="article-date">
+  <time datetime="2016-07-19T00:00:00.000Z" itemprop="datePublished">2016-07-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/19/2016-07-19-01/">vim配置工具推荐</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用vim也三年多时间了, 从初期的到处寻找插件, 到自己动手改插件, 再到最后固定的使用同一个配置工具来进行统一配置, 最后终于固定下来了, 现在一直都在使用<a href="http://vim.spf13.com/" target="_blank" rel="noopener">spf13-vim</a>这个部署工具进行部署, 推荐一下, 它支持各种平台(vim, Gvim, macvim), 而且一条命令即可安装, 很是方便</p>
+<p>笔者也从github上fork了一个分支出来, 针对自己的修改化需求进行了一些小的微调, 更适合我的使用习惯了, 可以用下面的这条命令来安装我微调后的spf13-vim</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;hahaliu005&#x2F;spf13-vim&#x2F;3.0&#x2F;bootstrap.sh | sh</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/19/2016-07-19-01/" data-id="ckce4u35l000w1mxogl1p5nf6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-07-18-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/18/2016-07-18-01/" class="article-date">
+  <time datetime="2016-07-18T00:00:00.000Z" itemprop="datePublished">2016-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/18/2016-07-18-01/">一个简单的docker+swarm实例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>要搭建这个实例, 虚拟机是不可少的, 本人是在VirtualBox中搭建了三个Ubuntu16.04的图形界面的系统, 再加上主机本身就是Ubuntu16.04的, 总共就有四台可用机了, 不过, 怕把自己的电脑搞乱, 就只用了三个虚拟机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">host-1 &#x3D;&gt; 10.72.2.43</span><br><span class="line">host-2 &#x3D;&gt; 10.72.2.44</span><br><span class="line">host-3 &#x3D;&gt; 10.72.2.45</span><br></pre></td></tr></table></figure>
+
+<p>请为每台主机装上docker, 相关帖子有安装docker的步骤</p>
+<p>docker安装完成后, 可能已经启动了, 先停止自动运行的docker, 然后再命令行运行自定义选项的docker,<br>三个虚拟机都需要启动docker哟.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop docker</span><br><span class="line">sudo docker daemon -H tcp:&#x2F;&#x2F;0.0.0.0:2375 -H unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock -g &#x2F;var&#x2F;lib&#x2F;docker2</span><br></pre></td></tr></table></figure>
+
+<p>在host-1上启动发现服务的容器, 用于服务的发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8500:8500 --name&#x3D;consul progrium&#x2F;consul -server -bootstrap</span><br></pre></td></tr></table></figure>
+
+<p>在host-1, host-2上各启动一个swarm-manage, 一个为主一个为备, 当主manage挂掉时, 另一个会自动被转换为主manage</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># host-1</span><br><span class="line">docker run -d -p 4000:4000 swarm manage -H :4000 --replication --advertise 10.72.2.43:4000 consul:&#x2F;&#x2F;10.72.2.43:8500</span><br><span class="line"># host-2</span><br><span class="line">docker run -d -p 4000:4000 swarm manage -H :4000 --replication --advertise 10.72.2.44:4000 consul:&#x2F;&#x2F;10.72.2.43:8500</span><br></pre></td></tr></table></figure>
+
+<p>使用’swarm join’加入节点, 三台主机各加一个节点吧, 当然加多少随意</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># host-1</span><br><span class="line">docker run -d swarm join --advertise&#x3D;10.72.2.43:2375 consul:&#x2F;&#x2F;10.72.2.43:8500</span><br><span class="line"># host-2</span><br><span class="line">docker run -d swarm join --advertise&#x3D;10.72.2.44:2375 consul:&#x2F;&#x2F;10.72.2.44:8500</span><br><span class="line"># host-3</span><br><span class="line">docker run -d swarm join --advertise&#x3D;10.72.2.45:2375 consul:&#x2F;&#x2F;10.72.2.45:8500</span><br></pre></td></tr></table></figure>
+
+<p>可以使用以下命令来查看相关的信息, 请在启动了manage的机器上运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 查看docker集群相关信息, 可以看到有关于3个节点相关的信息描述</span><br><span class="line">docker -H :4000 info</span><br><span class="line"># 列出正在运行的容器</span><br><span class="line">docker -H :4000 ps</span><br><span class="line"># 等等....</span><br></pre></td></tr></table></figure>
+
+<p>在manage主机中运行以下命令, 调度程序会轮流在各主机中执行此容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -H :4000 run hello-world</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/18/2016-07-18-01/" data-id="ckce4u35l000u1mxo43en4wb9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-07-16-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/16/2016-07-16-01/" class="article-date">
+  <time datetime="2016-07-16T00:00:00.000Z" itemprop="datePublished">2016-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/16/2016-07-16-01/">安装Docker, Docker-compose (Ubuntu 16.04)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>安装Docker可以直接使用这条命令, 全自动的, 它会缺什么装什么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https:&#x2F;&#x2F;get.docker.com&#x2F; | sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把用户加入到docker用户组中去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG docker username</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>想要让新加入docker用户组的用户可以使用docker命令, 需要重启一下主机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>docker默认使用的aufs文件系统对于centos7有一点问题, 所以可以文件系统改devicemapper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># vim &#x2F;etc&#x2F;default&#x2F;docker</span><br><span class="line">DOCKER_OPTS&#x3D;&quot;--storage-driver&#x3D;devicemapper&quot;</span><br><span class="line"># vim &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;docker.service</span><br><span class="line">EnvironmentFile&#x3D;-&#x2F;etc&#x2F;default&#x2F;docker</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;docker daemon -H fd:&#x2F;&#x2F; $DOCKER_OPTS</span><br><span class="line"># 默认情况下启动容器的最大数量为20, 加上下面这条就没有限制了</span><br><span class="line">TasksMax&#x3D;infinity</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后, 一定要安装dmsetup, devicemapper的库, 不然就会一直处于无响应的状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install dmsetup</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启docker, 如果不行, 重启主机后, 应该就好了. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装docker-compose, 可以到这个<a href="https://github.com/docker/compose/releases" target="_blank" rel="noopener">链接</a>上看已经更新到哪个版本了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -i</span><br><span class="line">curl -L https:&#x2F;&#x2F;github.com&#x2F;docker&#x2F;compose&#x2F;releases&#x2F;download&#x2F;1.8.0&#x2F;docker-compose-&#96;uname -s&#96;-&#96;uname -m&#96; &gt; &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose</span><br><span class="line">chmod +x &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/16/2016-07-16-01/" data-id="ckce4u35j000r1mxocdnggevd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-07-15-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/15/2016-07-15-01/" class="article-date">
+  <time datetime="2016-07-15T00:00:00.000Z" itemprop="datePublished">2016-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/15/2016-07-15-01/">安装mesos (Ubuntu 16.04)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>安装jdk7与一些依赖项, 必须得用jdk7呀</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:openjdk-r&#x2F;ppa  </span><br><span class="line">sudo apt-get update   </span><br><span class="line">sudo apt-get install openjdk-7-jdk  </span><br><span class="line"></span><br><span class="line">sudo apt-get install -y autoconf libtool</span><br><span class="line">sudo apt-get -y install build-essential python-dev libcurl4-nss-dev libsasl2-dev libsasl2-modules maven libapr1-dev libsvn-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装jdk7后, 需要用到JAV_HOME环境变量, 但是并没有, 自行设置吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># vim ~&#x2F;.zshrc</span><br><span class="line">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;java-7-openjdk-amd64</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取最新版本的mesos并解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;archive.apache.org&#x2F;dist&#x2F;mesos&#x2F;1.0.0&#x2F;mesos-1.0.0.tar.gz</span><br><span class="line">tar -zxvf mesos-1.0.0.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始编译安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd mesos-1.0.0</span><br><span class="line">mkdir build</span><br><span class="line">..&#x2F;configure</span><br><span class="line">make -j $(nproc)</span><br><span class="line"># 如果你有时间就执行test吧, 等得我花儿都谢了</span><br><span class="line">make test</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果找不到libs, 也许需要更新一下缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动一个master与一个agent</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mesos-master --ip&#x3D;127.0.0.1 --work_dir&#x3D;&#x2F;var&#x2F;lib&#x2F;mesos </span><br><span class="line">sudo mesos-agent --master&#x3D;127.0.0.1:5050 --work_dir&#x3D;&#x2F;var&#x2F;lib&#x2F;mesos</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>访问<a href="http://127.0.0.1:5050就能看到网页的监控面板了">http://127.0.0.1:5050就能看到网页的监控面板了</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/15/2016-07-15-01/" data-id="ckce4u35j000p1mxo4gzsa892" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mesos/" rel="tag">mesos</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-07-14-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/14/2016-07-14-01/" class="article-date">
+  <time datetime="2016-07-14T00:00:00.000Z" itemprop="datePublished">2016-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/14/2016-07-14-01/">Laravel框架的index.php文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="laravel框架采用了单一入口的原则-所有的PHP逻辑请求处理都是以index-php为入口-所以研究它的源码当然是从index-php开始看起了"><a href="#laravel框架采用了单一入口的原则-所有的PHP逻辑请求处理都是以index-php为入口-所以研究它的源码当然是从index-php开始看起了" class="headerlink" title="laravel框架采用了单一入口的原则, 所有的PHP逻辑请求处理都是以index.php为入口, 所以研究它的源码当然是从index.php开始看起了."></a>laravel框架采用了单一入口的原则, 所有的PHP逻辑请求处理都是以index.php为入口, 所以研究它的源码当然是从index.php开始看起了.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require __DIR__.&#39;&#x2F;..&#x2F;bootstrap&#x2F;autoload.php&#39;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注册一些自动加载的类, 包括composer的autoload, 为加快文件读取速度的缓存类autoload, 正因为有了这句, 我们才能在之后方便地使用命名空间来随意调用类.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$app &#x3D; require_once __DIR__.&#39;&#x2F;..&#x2F;bootstrap&#x2F;app.php&#39;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建了贯穿整个程序周期的应用实例, 应用实例的构造函数中注册了基本的bind, 基本的provider(EverntServiceProvider, RoutingServiceProvider), 运行provider的register方法, 注册了核心容器别名; 生成实例后, 还在$app中绑定了三个必须的单例(Http\Kernel, Console\Kernel, Exceptions\Handler), 最后将实例化后的Foundation\Application()返回至$app</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$kernel &#x3D; $app-&gt;make(Illuminate\Contracts\Http\Kernel::class);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实例化了Http\Kernel核心类, 构造方法主要是生成了中间件与中间件的数组, 但是并没有做任何执行动作,  此核心类是专用于处理http请求的, 还有一个类是专用于处理命令行的(Console\Kernel), 在使用命令行的时候就会使用到</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$response &#x3D; $kernel-&gt;handle(</span><br><span class="line">    $request &#x3D; Illuminate\Http\Request::capture()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用Http\Request::capture(), 获取$_GET, $_POST, $_COOKIE, $_FILES, $_SERVER等请求数据, 实例化出Http\Request类, 然后核心类使用handle()对请求进行处理, 主要的处理逻辑也都在这里面了, 包括读取环境变量; 读取配置文件; 注册Facades; 运行providers的register方法; 运行providers的boot方法; request参数等处理中间件(middleware); 调用Controller@action; 渲染view. 生成一个Http\Response方法, 返回至$response变量中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$response-&gt;send();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这句话实际上也就是输出了页面数据, 包括通过$response中的headers数组来生成header(), echo出所有的body信息.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$kernel-&gt;terminate($request, $response);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>直到这一行执行完毕以后, 整个程序的生命周期才算结束, 具体的表现即为页面完全展现在用户面前, tab栏不再转圈了. 这句话做了一些后续的处理工作, 如果生效的middleware中有terminate方法, 它便会在这是执行; 使用Application@terminating(callback)方法添加的匿名函数也会在此时执行.</p>
+</li>
+<li><p>嗯, 好简洁</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/14/2016-07-14-01/" data-id="ckce4u35h000m1mxo7sch1vfb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-06-25-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/25/2016-06-25-01/" class="article-date">
+  <time datetime="2016-06-25T00:00:00.000Z" itemprop="datePublished">2016-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/25/2016-06-25-01/">设计模式--装饰模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
+<li>动态地给一个对象添加一些额外的职责. 就增加功能来说, 装饰模式相比生成子类更为灵活</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><ul>
+<li>一个给父亲汇报成绩单的示例:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SchoolReport</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">report</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"This is the score report\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sign</span><span class="params">(string $name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"The sign is: $name\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> <span class="keyword">extends</span> <span class="title">SchoolReport</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $schoolReport;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(SchoolReport $report)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;schoolReport = $report;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">report</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;schoolReport-&gt;report();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sign</span><span class="params">(string $name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;schoolReport-&gt;sign($name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HighScoreDecorator</span> <span class="keyword">extends</span> <span class="title">Decorator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(SchoolReport $report)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">parent</span>::__construct($report);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">reportHighScore</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Report high score\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">report</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;reportHighScore();</span><br><span class="line">        <span class="keyword">parent</span>::report();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SortDecorator</span> <span class="keyword">extends</span> <span class="title">Decorator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(SchoolReport $report)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">parent</span>::__construct($report);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">reportSort</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Report the Sort\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">report</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">parent</span>::report();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;reportSort();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$report = <span class="keyword">new</span> SchoolReport();</span><br><span class="line"></span><br><span class="line">$report = <span class="keyword">new</span> HighScoreDecorator($report);</span><br><span class="line">$report = <span class="keyword">new</span> SortDecorator($report);</span><br><span class="line"></span><br><span class="line">$report-&gt;report();</span><br><span class="line"></span><br><span class="line">$report-&gt;sign(<span class="string">"name"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Report high score</span></span><br><span class="line"><span class="comment">This is the score report</span></span><br><span class="line"><span class="comment">Report the Sort</span></span><br><span class="line"><span class="comment">The sign is: name</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点与应用"><a href="#优缺点与应用" class="headerlink" title="优缺点与应用"></a>优缺点与应用</h2><ul>
+<li><p>装饰类与被装饰类可以独立发展, 而不会相互耦合</p>
+</li>
+<li><p>装饰模式是继承关系的一个替代方案</p>
+</li>
+<li><p>装饰模式可以动态地扩展一个实现类的功能</p>
+</li>
+<li><p>多层装饰模式是很复杂的</p>
+</li>
+<li><p>需要为一个类扩展功能, 或为一批兄弟类进行改装或加装功能, 可以使用装饰模式</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/25/2016-06-25-01/" data-id="ckce4u35f000l1mxo8iy5ev8k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/" rel="tag">design pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-pattern/" rel="tag">design pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mesos/" rel="tag">mesos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/design-pattern/" style="font-size: 17.5px;">design pattern</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/mesos/" style="font-size: 10px;">mesos</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/09/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/08/Hello-Hexo/">Hello Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/13/2016-08-13-01/">设计模式--桥梁模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/11/2016-08-12-01/">设计模式--享元模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/11/2016-08-11-01/">设计模式--解释器模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

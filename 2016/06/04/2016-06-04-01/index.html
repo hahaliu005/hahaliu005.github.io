@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>PHP7新特性的整理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="异常 PHP中的Errors现在也可以被抛出与捕获了, 现在整个异常类的架构应该像这样:  12345678910111213141516171819\Throwable├── \Exception (implements \Throwable)│   ├── \LogicException (extends \Exception)│   │   ├── \BadFunctionCallExcep">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP7新特性的整理">
+<meta property="og:url" content="http://yoursite.com/2016/06/04/2016-06-04-01/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="异常 PHP中的Errors现在也可以被抛出与捕获了, 现在整个异常类的架构应该像这样:  12345678910111213141516171819\Throwable├── \Exception (implements \Throwable)│   ├── \LogicException (extends \Exception)│   │   ├── \BadFunctionCallExcep">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-06-04T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-09T01:48:28.827Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016-06-04-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/04/2016-06-04-01/" class="article-date">
+  <time datetime="2016-06-04T00:00:00.000Z" itemprop="datePublished">2016-06-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP7新特性的整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><ul>
+<li>PHP中的Errors现在也可以被抛出与捕获了, 现在整个异常类的架构应该像这样:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">\Throwable</span><br><span class="line">├── \Exception (implements \Throwable)</span><br><span class="line">│   ├── \LogicException (extends \Exception)</span><br><span class="line">│   │   ├── \BadFunctionCallException (extends \LogicException)</span><br><span class="line">│   │   │   └── \BadMethodCallException (extends \BadFunctionCallException)</span><br><span class="line">│   │   ├── \DomainException (extends \LogicException)</span><br><span class="line">│   │   ├── \InvalidArgumentException (extends \LogicException)</span><br><span class="line">│   │   ├── \LengthException (extends \LogicException)</span><br><span class="line">│   │   └── \OutOfRangeException (extends \LogicException)</span><br><span class="line">│   └── \RuntimeException (extends \Exception)</span><br><span class="line">│       ├── \OutOfBoundsException (extends \RuntimeException)</span><br><span class="line">│       ├── \OverflowException (extends \RuntimeException)</span><br><span class="line">│       ├── \RangeException (extends \RuntimeException)</span><br><span class="line">│       ├── \UnderflowException (extends \RuntimeException)</span><br><span class="line">│       └── \UnexpectedValueException (extends \RuntimeException)</span><br><span class="line">└── \Error (implements \Throwable)</span><br><span class="line">    ├── \AssertionError (extends \Error)</span><br><span class="line">    ├── \ParseError (extends \Error)</span><br><span class="line">    └── \TypeError (extends \Error)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>异常类的Throwable接口应该像这样:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Throwable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getMessage</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getCode</span><span class="params">()</span>: <span class="title">int</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getFile</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getLine</span><span class="params">()</span>: <span class="title">int</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTrace</span><span class="params">()</span>: <span class="title">array</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTraceAsString</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getPrevious</span><span class="params">()</span>: <span class="title">Throwable</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span><span class="params">()</span>: <span class="title">string</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一段兼容PHP5.X与PHP7的抛出异常与捕获异常的代码应该像这样:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 抛出一个异常</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Throwable $t) &#123;</span><br><span class="line">    <span class="comment">// 只会在php7中被捕获</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $e) &#123;</span><br><span class="line">    <span class="comment">// 不论PHP5.X或PHP7都可以被捕获</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="标量类型声明与返回值类型声明"><a href="#标量类型声明与返回值类型声明" class="headerlink" title="标量类型声明与返回值类型声明"></a>标量类型声明与返回值类型声明</h2><ul>
+<li>可以为函数指定参数类型与返回值类型, 返回所支持的类型声明有这样几种:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Class&#x2F;Interface name &#x3D;&gt; 类或接口名</span><br><span class="line">array                &#x3D;&gt; 数组</span><br><span class="line">callable             &#x3D;&gt; 可回调类型, 如匿名函数</span><br><span class="line">bool                 &#x3D;&gt; 布尔型</span><br><span class="line">float                &#x3D;&gt; 浮点型</span><br><span class="line">int                  &#x3D;&gt; 整型</span><br><span class="line">string               &#x3D;&gt; 字符串型</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>个人认为如果使用了PHP7, 就应该尽量声明每一个函数的参数类型与返回值类型, 示例:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arraysSum</span><span class="params">(array ...$arrays)</span>: <span class="title">array</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> array_map(<span class="function"><span class="keyword">function</span><span class="params">(array $array)</span>: <span class="title">int</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> array_sum($array);</span><br><span class="line">    &#125;, $arrays);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print_r(arraysSum([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]));</span><br></pre></td></tr></table></figure>
+
+<h2 id="null合并运算符"><a href="#null合并运算符" class="headerlink" title="null合并运算符"></a>null合并运算符</h2><ul>
+<li>有了这个新特性, 再也不用写如下这样坑爹的代码了, 一个变量写两遍实在是太不美观了, 尤其是那种名字很长的变量或维度很高的数组:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; old</span><br><span class="line">isset($var[&#39;a&#39;][&#39;b&#39;]) ? $var[&#39;a&#39;][&#39;b&#39;] : $otherlogic;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;new</span><br><span class="line">$var[&#39;a&#39;][&#39;b&#39;] ?? $otherlogic;</span><br></pre></td></tr></table></figure>
+
+<h2 id="太空船操作符"><a href="#太空船操作符" class="headerlink" title="太空船操作符"></a>太空船操作符</h2><ul>
+<li>用于比较两个表达式, 没什么好说的, 直接看官方例子就明白了:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Integers</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">1</span> &lt;=&gt; <span class="number">1</span>; <span class="comment">// 0</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">1</span> &lt;=&gt; <span class="number">2</span>; <span class="comment">// -1</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">2</span> &lt;=&gt; <span class="number">1</span>; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Floats</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">1.5</span> &lt;=&gt; <span class="number">1.5</span>; <span class="comment">// 0</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">1.5</span> &lt;=&gt; <span class="number">2.5</span>; <span class="comment">// -1</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">2.5</span> &lt;=&gt; <span class="number">1.5</span>; <span class="comment">// 1</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// Strings</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"a"</span> &lt;=&gt; <span class="string">"a"</span>; <span class="comment">// 0</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"a"</span> &lt;=&gt; <span class="string">"b"</span>; <span class="comment">// -1</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"b"</span> &lt;=&gt; <span class="string">"a"</span>; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="define-定义常量数组"><a href="#define-定义常量数组" class="headerlink" title="define()定义常量数组"></a>define()定义常量数组</h2><ul>
+<li>数组现在可以通过define()来定义<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'ARR'</span>, [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>]);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="匿名类"><a href="#匿名类" class="headerlink" title="匿名类"></a>匿名类</h2><ul>
+<li>可以通过new class来实现一个匿名类</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Logger</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">log</span><span class="params">(string $msg)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $logger;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getLogger</span><span class="params">()</span>: <span class="title">Logger</span> </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;logger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setLogger</span><span class="params">(Logger $logger)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">$this</span>-&gt;logger = $logger;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$app = <span class="keyword">new</span> Application;</span><br><span class="line">$app-&gt;setLogger(<span class="keyword">new</span> <span class="class"><span class="keyword">class</span> <span class="keyword">implements</span> <span class="title">Logger</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">log</span><span class="params">(string $msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> $msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var_dump($app-&gt;getLogger());</span><br><span class="line"></span><br><span class="line"><span class="comment">// output</span></span><br><span class="line"><span class="comment">// object(class@anonymous)#2 (0) &#123;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="转译语法"><a href="#转译语法" class="headerlink" title="转译语法"></a>转译语法</h2><ul>
+<li>可以接受任何有效的Code point</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">"\u&#123;4E00&#125;"</span>;  <span class="comment">// output 一</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"\u&#123;4EFFF&#125;"</span>; <span class="comment">// output 乱码</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"\u&#123;9FA5&#125;"</span>;   <span class="comment">// output 龥</span></span><br><span class="line"><span class="comment">// 于是顺便说下, 常用中文字符的unicode范围为 4E00 ~ 9FA5 , 并不是完整的, 但用于平时的判断也足够了</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Closure-call"><a href="#Closure-call" class="headerlink" title="Closure::call()"></a>Closure::call()</h2><ul>
+<li>Closure::call() 现在有着更好的性能，简短干练的暂时绑定一个方法到对象上闭包并调用它.</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;<span class="keyword">private</span> $x = <span class="number">1</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Pre PHP 7 code</span></span><br><span class="line">$getXCB = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;x;&#125;;</span><br><span class="line">$getX = $getXCB-&gt;bindTo(<span class="keyword">new</span> A, <span class="string">'A'</span>); <span class="comment">// intermediate closure</span></span><br><span class="line"><span class="keyword">echo</span> $getX();</span><br><span class="line"></span><br><span class="line"><span class="comment">// PHP 7+ code</span></span><br><span class="line">$getX = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;x;&#125;;</span><br><span class="line"><span class="keyword">echo</span> $getX-&gt;call(<span class="keyword">new</span> A);</span><br><span class="line"></span><br><span class="line"><span class="comment">// output 1 1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="为unserialize-提供过滤"><a href="#为unserialize-提供过滤" class="headerlink" title="为unserialize()提供过滤"></a>为unserialize()提供过滤</h2><ul>
+<li>这个特性旨在提供更安全的方式解包不可靠的数据。它通过白名单的方式来防止潜在的代码注入</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">gg</span>\<span class="title">hh</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">a</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">ee</span>\<span class="title">ff</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">b</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$a = <span class="keyword">new</span> \gg\hh\a();</span><br><span class="line">$b = <span class="keyword">new</span> \ee\ff\b();</span><br><span class="line"></span><br><span class="line">$sa = serialize($a);</span><br><span class="line">$sb = serialize($b);</span><br><span class="line"></span><br><span class="line">var_dump(unserialize($sa));</span><br><span class="line"></span><br><span class="line">var_dump(unserialize($sa, [<span class="string">'allowed_classes'</span>=&gt;<span class="keyword">false</span>]));</span><br><span class="line"></span><br><span class="line">var_dump(unserialize($sa, [<span class="string">'allowed_classes'</span>=&gt;<span class="keyword">true</span>]));</span><br><span class="line"></span><br><span class="line">var_dump(unserialize($sa, [<span class="string">'allowed_classes'</span>=&gt;[<span class="string">'b'</span>]]));</span><br><span class="line"></span><br><span class="line">var_dump(unserialize($sa, [<span class="string">'allowed_classes'</span>=&gt;[<span class="string">'gg\hh\a'</span>]]));</span><br><span class="line"></span><br><span class="line">var_dump(unserialize($sa, [<span class="string">'allowed_classes'</span>=&gt;[<span class="string">'a'</span>]]));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">output</span></span><br><span class="line"><span class="comment">object(gg\hh\a)#3 (0) &#123;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">object(__PHP_Incomplete_Class)#3 (1) &#123;</span></span><br><span class="line"><span class="comment">  ["__PHP_Incomplete_Class_Name"]=&gt;</span></span><br><span class="line"><span class="comment">  string(7) "gg\hh\a"</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">object(gg\hh\a)#3 (0) &#123;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">object(__PHP_Incomplete_Class)#3 (1) &#123;</span></span><br><span class="line"><span class="comment">  ["__PHP_Incomplete_Class_Name"]=&gt;</span></span><br><span class="line"><span class="comment">  string(7) "gg\hh\a"</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">object(gg\hh\a)#3 (0) &#123;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">object(__PHP_Incomplete_Class)#3 (1) &#123;</span></span><br><span class="line"><span class="comment">  ["__PHP_Incomplete_Class_Name"]=&gt;</span></span><br><span class="line"><span class="comment">  string(7) "gg\hh\a"</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="IntlChar"><a href="#IntlChar" class="headerlink" title="IntlChar"></a>IntlChar</h2><ul>
+<li>提供了一系列对unicode编码进行操作的函数, 常量等, 可以参考官方文档: <a href="http://php.net/manual/en/class.intlchar.php" target="_blank" rel="noopener">Link</a>, 比较有用的就属这两个了:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 知道了unicode编码, 就可以得到相应表示的字符</span></span><br><span class="line">var_dump(IntlChar::chr(<span class="number">0x4E00</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 知道了字符, 就可以知道相应的unicode编码</span></span><br><span class="line">var_dump(IntlChar::ord(<span class="string">'一'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个是十进制的unicode编码</span></span><br><span class="line">var_dump(IntlChar::chr(<span class="number">19968</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/** output</span></span><br><span class="line"><span class="comment">string(3) "一"</span></span><br><span class="line"><span class="comment">int(19968)</span></span><br><span class="line"><span class="comment">string(3) "一"</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="预期"><a href="#预期" class="headerlink" title="预期"></a>预期</h2><ul>
+<li>预期是向后兼用并增强之前的 assert() 的方法。 它使得在生产环境中启用断言为零成本，并且提供当断言失败时抛出特定异常的能力, 老版本的API出于兼容目的将继续被维护，assert()现在是一个语言结构，它允许第一个参数是一个表达式，而不仅仅是一个待计算的 string或一个待测试的boolean。</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomError</span> <span class="keyword">extends</span> <span class="title">AssertionError</span> </span>&#123;&#125;</span><br><span class="line">assert(<span class="keyword">true</span> == <span class="keyword">false</span>, <span class="keyword">new</span> CustomError(<span class="string">'True is not false!'</span>));</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'Hi!'</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">output with ini_set('zend.assertions', 0)</span></span><br><span class="line"><span class="comment">Hi!</span></span><br><span class="line"><span class="comment">output with ini_set('zend.assertions', 1) &amp;&amp; ini_set('assert.exception', 0)</span></span><br><span class="line"><span class="comment">Warning: assert(): CustomError: True is not false! in -:4</span></span><br><span class="line"><span class="comment">Stack trace:</span></span><br><span class="line"><span class="comment">#0 &#123;main&#125; failed in - on line 4</span></span><br><span class="line"><span class="comment">Hi!</span></span><br><span class="line"><span class="comment">output with ini_set('zend.assertions', 1) &amp;&amp; ini_set('assert.exception', 1)</span></span><br><span class="line"><span class="comment">Fatal error: Uncaught CustomError: True is not false! in -:4</span></span><br><span class="line"><span class="comment">Stack trace:</span></span><br><span class="line"><span class="comment">#0 &#123;main&#125;</span></span><br><span class="line"><span class="comment">  thrown in - on line 4</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="命名空间批量导入"><a href="#命名空间批量导入" class="headerlink" title="命名空间批量导入"></a>命名空间批量导入</h2><ul>
+<li>从同一 namespace 导入的类、函数和常量现在可以通过单个 use 语句 一次性导入了。</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Pre PHP 7 code</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">some</span>\<span class="title">namespace</span>\<span class="title">ClassA</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">some</span>\<span class="title">namespace</span>\<span class="title">ClassB</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">some</span>\<span class="title">namespace</span>\<span class="title">ClassC</span> <span class="title">as</span> <span class="title">C</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">function</span> <span class="title">some</span>\<span class="title">namespace</span>\<span class="title">fn_a</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">function</span> <span class="title">some</span>\<span class="title">namespace</span>\<span class="title">fn_b</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">function</span> <span class="title">some</span>\<span class="title">namespace</span>\<span class="title">fn_c</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">const</span> <span class="title">some</span>\<span class="title">namespace</span>\<span class="title">ConstA</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">const</span> <span class="title">some</span>\<span class="title">namespace</span>\<span class="title">ConstB</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">const</span> <span class="title">some</span>\<span class="title">namespace</span>\<span class="title">ConstC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// PHP 7+ code</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">some</span>\<span class="title">namespace</span>\&#123;<span class="title">ClassA</span>, <span class="title">ClassB</span>, <span class="title">ClassC</span> <span class="title">as</span> <span class="title">C</span>&#125;;</span><br><span class="line"><span class="keyword">use</span> <span class="title">function</span> <span class="title">some</span>\<span class="title">namespace</span>\&#123;<span class="title">fn_a</span>, <span class="title">fn_b</span>, <span class="title">fn_c</span>&#125;;</span><br><span class="line"><span class="keyword">use</span> <span class="title">const</span> <span class="title">some</span>\<span class="title">namespace</span>\&#123;<span class="title">ConstA</span>, <span class="title">ConstB</span>, <span class="title">ConstC</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="yield生成器函数"><a href="#yield生成器函数" class="headerlink" title="yield生成器函数"></a>yield生成器函数</h2><ul>
+<li>生成器函数可以有返回值了:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$gen = (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($gen <span class="keyword">as</span> $val) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $val, PHP_EOL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $gen-&gt;getReturn(), PHP_EOL;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** output</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>而且可以引用另一个生成器函数:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gen</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">yield</span> from gen2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gen2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (gen() <span class="keyword">as</span> $val)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> $val, PHP_EOL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**output</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">4</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Integer-division-with-intdiv"><a href="#Integer-division-with-intdiv" class="headerlink" title="Integer division with intdiv()"></a>Integer division with intdiv()</h2><ul>
+<li>这个函数可以理解为整除, 但又不尽相同:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// intdiv应该与下面的函数得到同样的结果</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">intdiv_1</span><span class="params">($a, $b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ($a - $a % $b) / $b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 但它跟下面的函数得到的结果可能不一样</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">intdiv_2</span><span class="params">($a, $b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> floor($a / $b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line">$param1 = <span class="number">-10</span>;</span><br><span class="line">$param2 = <span class="number">3</span>;</span><br><span class="line">print_r([</span><br><span class="line">    <span class="string">'modulus'</span> =&gt; intdiv_1($param1, $param2),</span><br><span class="line">    <span class="string">'floor'</span> =&gt; intdiv_2($param1, $param2),</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Array</span></span><br><span class="line"><span class="comment">* (</span></span><br><span class="line"><span class="comment">*     [modulus] =&gt; -3</span></span><br><span class="line"><span class="comment">*     [floor] =&gt; -4</span></span><br><span class="line"><span class="comment">* )</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Session-options"><a href="#Session-options" class="headerlink" title="Session options"></a>Session options</h2><ul>
+<li>session_start()接受一个参数来覆盖默认的session相关配置:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">session_start([</span><br><span class="line">    <span class="string">'cache_limiter'</span> =&gt; <span class="string">'private'</span>,</span><br><span class="line">    <span class="string">'read_and_close'</span> =&gt; <span class="keyword">true</span>,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<h2 id="preg-replace-callback-array"><a href="#preg-replace-callback-array" class="headerlink" title="preg_replace_callback_array"></a>preg_replace_callback_array</h2><ul>
+<li>批量的进行查找与自定义替换:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$subject = <span class="string">'Aaaaaa Bbb'</span>;</span><br><span class="line"></span><br><span class="line">preg_replace_callback_array(</span><br><span class="line">    [</span><br><span class="line">        <span class="string">'~[a]+~i'</span> =&gt; <span class="function"><span class="keyword">function</span> <span class="params">($match)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> strlen($match[<span class="number">0</span>]), <span class="string">' matches for "a" found'</span>, PHP_EOL;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'~[b]+~i'</span> =&gt; <span class="function"><span class="keyword">function</span> <span class="params">($match)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> strlen($match[<span class="number">0</span>]), <span class="string">' matches for "b" found'</span>, PHP_EOL;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    $subject</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* output</span></span><br><span class="line"><span class="comment">6 matches for "a" found</span></span><br><span class="line"><span class="comment">3 matches for "b" found</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="CSPRNG-函数"><a href="#CSPRNG-函数" class="headerlink" title="CSPRNG 函数"></a>CSPRNG 函数</h2><ul>
+<li>里面现在有random_bytes()与random_int()两个函数, 不过, 生成唯一ID的这个函数倒是挺有用的:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateUUIDv4</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(version_compare(PHP_VERSION,<span class="string">'7.0.0'</span>, <span class="string">'&lt;'</span>) )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">'%04x%04x-%04x-%04x-%04x-%04x%04x%04x'</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 32 bits for "time_low"</span></span><br><span class="line">        mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>), mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>),</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 16 bits for "time_mid"</span></span><br><span class="line">        mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>),</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 16 bits for "time_hi_and_version",</span></span><br><span class="line">        <span class="comment">// four most significant bits holds version number 4</span></span><br><span class="line">        mt_rand(<span class="number">0</span>, <span class="number">0x0fff</span>) | <span class="number">0x4000</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 16 bits, 8 bits for "clk_seq_hi_res",</span></span><br><span class="line">        <span class="comment">// 8 bits for "clk_seq_low",</span></span><br><span class="line">        <span class="comment">// two most significant bits holds zero and one for variant DCE1.1</span></span><br><span class="line">        mt_rand(<span class="number">0</span>, <span class="number">0x3fff</span>) | <span class="number">0x8000</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 48 bits for "node"</span></span><br><span class="line">        mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>), mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>), mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">'%04x%04x-%04x-%04x-%04x-%04x%04x%04x'</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 32 bits for "time_low"</span></span><br><span class="line">        random_int(<span class="number">0</span>, <span class="number">0xffff</span>), random_int(<span class="number">0</span>, <span class="number">0xffff</span>),</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 16 bits for "time_mid"</span></span><br><span class="line">        random_int(<span class="number">0</span>, <span class="number">0xffff</span>),</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 16 bits for "time_hi_and_version",</span></span><br><span class="line">        <span class="comment">// four most significant bits holds version number 4</span></span><br><span class="line">        random_int(<span class="number">0</span>, <span class="number">0x0fff</span>) | <span class="number">0x4000</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 16 bits, 8 bits for "clk_seq_hi_res",</span></span><br><span class="line">        <span class="comment">// 8 bits for "clk_seq_low",</span></span><br><span class="line">        <span class="comment">// two most significant bits holds zero and one for variant DCE1.1</span></span><br><span class="line">        random_int(<span class="number">0</span>, <span class="number">0x3fff</span>) | <span class="number">0x8000</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 48 bits for "node"</span></span><br><span class="line">        random_int(<span class="number">0</span>, <span class="number">0xffff</span>), random_int(<span class="number">0</span>, <span class="number">0xffff</span>), random_int(<span class="number">0</span>, <span class="number">0xffff</span>)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><ul>
+<li>list现在可以正确的解析出实现了ArrayAccess接口的对象了:</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">items</span> <span class="keyword">implements</span> <span class="title">ArrayAccess</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $items = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetExists</span><span class="params">($offset)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> array_key_exists($offset, <span class="keyword">$this</span>-&gt;items);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetGet</span><span class="params">($offset)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;items[$offset];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetSet</span><span class="params">($offset, $value)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (! $offset) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;items[] = $value;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;items[$offset] = $value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetUnset</span><span class="params">($offset)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">unset</span>(<span class="keyword">$this</span>-&gt;items[$offset]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$i = <span class="keyword">new</span> items();</span><br><span class="line">$i[] = <span class="string">'aa'</span>;</span><br><span class="line">$i[] = <span class="string">'bb'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">list</span>($var1, $var2) = $i;</span><br><span class="line"></span><br><span class="line">var_dump($var1);</span><br><span class="line">var_dump($var2);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*output</span></span><br><span class="line"><span class="comment">string(2) "aa"</span></span><br><span class="line"><span class="comment">string(2) "bb"</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/04/2016-06-04-01/" data-id="ckce4u36b00301mxofptw2fae" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/05/2016-06-05-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          设计模式--单例模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/23/2016-05-23-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在linux系统下编译安装tmux</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-pattern/" rel="tag">design pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mesos/" rel="tag">mesos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/design-pattern/" style="font-size: 17.5px;">design pattern</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/mesos/" style="font-size: 10px;">mesos</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/09/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/08/Hello-Hexo/">Hello Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/13/2016-08-13-01/">设计模式--桥梁模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/11/2016-08-12-01/">设计模式--享元模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/11/2016-08-11-01/">设计模式--解释器模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
