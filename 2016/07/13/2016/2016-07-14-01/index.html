@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Laravel框架的index.php文件 | Brady&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="laravel框架采用了单一入口的原则, 所有的PHP逻辑请求处理都是以index.php为入口, 所以研究它的源码当然是从index.php开始看起了.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel框架的index.php文件">
+<meta property="og:url" content="https://hahaliu005.github.io/2016/07/13/2016/2016-07-14-01/index.html">
+<meta property="og:site_name" content="Brady&#39;s Blog">
+<meta property="og:description" content="laravel框架采用了单一入口的原则, 所有的PHP逻辑请求处理都是以index.php为入口, 所以研究它的源码当然是从index.php开始看起了.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-07-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-21T04:07:52.871Z">
+<meta property="article:author" content="Brady Liu">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="Laravel">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/fonts/GoogleFonts.css" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Brady&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Remember Every Thing</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hahaliu005.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016/2016-07-14-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/13/2016/2016-07-14-01/" class="article-date">
+  <time datetime="2016-07-13T16:00:00.000Z" itemprop="datePublished">2016-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Laravel框架的index.php文件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="laravel框架采用了单一入口的原则-所有的PHP逻辑请求处理都是以index-php为入口-所以研究它的源码当然是从index-php开始看起了"><a href="#laravel框架采用了单一入口的原则-所有的PHP逻辑请求处理都是以index-php为入口-所以研究它的源码当然是从index-php开始看起了" class="headerlink" title="laravel框架采用了单一入口的原则, 所有的PHP逻辑请求处理都是以index.php为入口, 所以研究它的源码当然是从index.php开始看起了."></a>laravel框架采用了单一入口的原则, 所有的PHP逻辑请求处理都是以index.php为入口, 所以研究它的源码当然是从index.php开始看起了.</h4><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require __DIR__.&#39;&#x2F;..&#x2F;bootstrap&#x2F;autoload.php&#39;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注册一些自动加载的类, 包括composer的autoload, 为加快文件读取速度的缓存类autoload, 正因为有了这句, 我们才能在之后方便地使用命名空间来随意调用类.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$app &#x3D; require_once __DIR__.&#39;&#x2F;..&#x2F;bootstrap&#x2F;app.php&#39;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建了贯穿整个程序周期的应用实例, 应用实例的构造函数中注册了基本的bind, 基本的provider(EverntServiceProvider, RoutingServiceProvider), 运行provider的register方法, 注册了核心容器别名; 生成实例后, 还在$app中绑定了三个必须的单例(Http\Kernel, Console\Kernel, Exceptions\Handler), 最后将实例化后的Foundation\Application()返回至$app</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$kernel &#x3D; $app-&gt;make(Illuminate\Contracts\Http\Kernel::class);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实例化了Http\Kernel核心类, 构造方法主要是生成了中间件与中间件的数组, 但是并没有做任何执行动作,  此核心类是专用于处理http请求的, 还有一个类是专用于处理命令行的(Console\Kernel), 在使用命令行的时候就会使用到</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$response &#x3D; $kernel-&gt;handle(</span><br><span class="line">    $request &#x3D; Illuminate\Http\Request::capture()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用Http\Request::capture(), 获取$_GET, $_POST, $_COOKIE, $_FILES, $_SERVER等请求数据, 实例化出Http\Request类, 然后核心类使用handle()对请求进行处理, 主要的处理逻辑也都在这里面了, 包括读取环境变量; 读取配置文件; 注册Facades; 运行providers的register方法; 运行providers的boot方法; request参数等处理中间件(middleware); 调用Controller@action; 渲染view. 生成一个Http\Response方法, 返回至$response变量中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$response-&gt;send();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这句话实际上也就是输出了页面数据, 包括通过$response中的headers数组来生成header(), echo出所有的body信息.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$kernel-&gt;terminate($request, $response);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>直到这一行执行完毕以后, 整个程序的生命周期才算结束, 具体的表现即为页面完全展现在用户面前, tab栏不再转圈了. 这句话做了一些后续的处理工作, 如果生效的middleware中有terminate方法, 它便会在这是执行; 使用Application@terminating(callback)方法添加的匿名函数也会在此时执行.</p>
+</li>
+<li><p>嗯, 好简洁</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2016/07/13/2016/2016-07-14-01/" data-id="ckcvf3lmi000k2xr62bj99e1j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/14/2016/2016-07-15-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          安装mesos (Ubuntu 16.04)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/24/2016/2016-06-25-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">设计模式--装饰模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mesos/" rel="tag">Mesos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Design-Pattern/" style="font-size: 17.5px;">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 12.5px;">Docker</a> <a href="/tags/Laravel/" style="font-size: 10px;">Laravel</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/12/2016/2016-08-13-01/">设计模式--桥梁模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/10/2016/2016-08-11-01/">设计模式--解释器模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/10/2016/2016-08-12-01/">设计模式--享元模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/09/2016/2016-08-10-01/">设计模式--状态模式</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/08/2016/2016-08-09-01/">设计模式--访问者模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Brady Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//cdn.jsdelivr.net/npm/jquery@2.2.3/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
