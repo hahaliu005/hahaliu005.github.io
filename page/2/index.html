@@ -44,7 +44,7 @@
       </h1>
       
         <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Remember Every Thing</a>
+          <a href="/" id="subtitle">Stay Foolish, Stay Hungry. 🙃</a>
         </h2>
       
     </div>
@@ -70,10 +70,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016/2016-08-03-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2019/07/NginxInstall" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/08/02/2016/2016-08-03-01/" class="article-date">
-  <time datetime="2016-08-02T16:00:00.000Z" itemprop="datePublished">2016-08-03</time>
+    <a href="/2019/07/02/2019/07/NginxInstall/" class="article-date">
+  <time datetime="2019-07-02T16:00:00.000Z" itemprop="datePublished">2019-07-03</time>
 </a>
     
   </div>
@@ -84,7 +84,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/02/2016/2016-08-03-01/">设计模式--适配器模式</a>
+      <a class="article-title" href="/2019/07/02/2019/07/NginxInstall/">Nginx Install</a>
     </h1>
   
 
@@ -92,19 +92,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>将一个类的接口变换的成客户端所期待的另一种接口, 从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作.</p>
+        <h2 id="Compile-from-source"><a href="#Compile-from-source" class="headerlink" title="Compile from source"></a>Compile from source</h2><p>Install requirements</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release -y &amp;&amp; \</span><br><span class="line">yum groupinstall &#39;Development Tools&#39; -y &amp;&amp; \</span><br><span class="line">yum install pcre-devel zlib-devel -y</span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
-            <a href="/2016/08/02/2016/2016-08-03-01/#more">Read More</a>
+            <a href="/2019/07/02/2019/07/NginxInstall/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/08/02/2016/2016-08-03-01/" data-id="ckcvf3lmo000z2xr66pltct5a" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2019/07/02/2019/07/NginxInstall/" data-id="ckd47q43o005s53uo8a9544id" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
 
     </footer>
   </div>
@@ -113,10 +114,10 @@
 
 
   
-    <article id="post-2016/2016-08-02-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2019/07/VirtualBoxNetworkConnecting" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/08/01/2016/2016-08-02-01/" class="article-date">
-  <time datetime="2016-08-01T16:00:00.000Z" itemprop="datePublished">2016-08-02</time>
+    <a href="/2019/06/30/2019/07/VirtualBoxNetworkConnecting/" class="article-date">
+  <time datetime="2019-06-30T16:00:00.000Z" itemprop="datePublished">2019-07-01</time>
 </a>
     
   </div>
@@ -127,7 +128,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/01/2016/2016-08-02-01/">设计模式--策略模式</a>
+      <a class="article-title" href="/2019/06/30/2019/07/VirtualBoxNetworkConnecting/">VirtualBox Network Connecting</a>
     </h1>
   
 
@@ -135,19 +136,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>定义一组算法, 将每个算法都封装起来, 并且使它们之间可以互换</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/08/01/2016/2016-08-02-01/#more">Read More</a>
-          </p>
-        
+        <h1 id="Bridge-connecting"><a href="#Bridge-connecting" class="headerlink" title="Bridge connecting"></a>Bridge connecting</h1><p>Simply choose <code>Setting =&gt; Bridged Adapter</code></p>
+<h1 id="NAT-connecting"><a href="#NAT-connecting" class="headerlink" title="NAT connecting"></a>NAT connecting</h1><p>It need add two network adapter, nat and host only</p>
+<ul>
+<li><code>Preferences =&gt; Network</code> to add an Nat network</li>
+<li><code>Settings =&gt; Network =&gt; Adapter 1</code> chose NAT and keep default configs</li>
+<li>Click ‘Tools =&gt; Network =&gt; Create’ on the left top of the software window, Create a network</li>
+<li><code>Settings =&gt; Network =&gt; Adapter 2</code> select Host-only Adapter and keep default settings</li>
+<li>If your vm had started, restart the network, <code>systemct restart network</code></li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/08/01/2016/2016-08-02-01/" data-id="ckcvf3lmn000w2xr65xjseex5" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2019/06/30/2019/07/VirtualBoxNetworkConnecting/" data-id="ckd47q43r005z53uod7vw6sih" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li></ul>
 
     </footer>
   </div>
@@ -156,10 +161,10 @@
 
 
   
-    <article id="post-2016/2016-07-19-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2019/06/CurlUsage" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/18/2016/2016-07-19-01/" class="article-date">
-  <time datetime="2016-07-18T16:00:00.000Z" itemprop="datePublished">2016-07-19</time>
+    <a href="/2019/06/29/2019/06/CurlUsage/" class="article-date">
+  <time datetime="2019-06-29T16:00:00.000Z" itemprop="datePublished">2019-06-30</time>
 </a>
     
   </div>
@@ -170,7 +175,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/18/2016/2016-07-19-01/">vim配置工具推荐</a>
+      <a class="article-title" href="/2019/06/29/2019/06/CurlUsage/">Curl Usage</a>
     </h1>
   
 
@@ -178,19 +183,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用vim也三年多时间了, 从初期的到处寻找插件, 到自己动手改插件, 再到最后固定的使用同一个配置工具来进行统一配置, 最后终于固定下来了, 现在一直都在使用<a href="http://vim.spf13.com/" target="_blank" rel="noopener">spf13-vim</a>这个部署工具进行部署, 推荐一下, 它支持各种平台(vim, Gvim, macvim), 而且一条命令即可安装, 很是方便</p>
+        <p>Send post request</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d &#39;param1&#x3D;value1&amp;param2&#x3D;value2&#39; &#39;http:&#x2F;&#x2F;example.com&#x2F;apis&#39;</span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
-            <a href="/2016/07/18/2016/2016-07-19-01/#more">Read More</a>
+            <a href="/2019/06/29/2019/06/CurlUsage/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/07/18/2016/2016-07-19-01/" data-id="ckcvf3lmm000u2xr6bbrngycz" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2019/06/29/2019/06/CurlUsage/" data-id="ckd47q43h005d53uogcde1uih" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Curl/" rel="tag">Curl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
 
     </footer>
   </div>
@@ -199,10 +205,10 @@
 
 
   
-    <article id="post-2016/2016-07-18-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2019/06/RPMUsage" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/17/2016/2016-07-18-01/" class="article-date">
-  <time datetime="2016-07-17T16:00:00.000Z" itemprop="datePublished">2016-07-18</time>
+    <a href="/2019/06/24/2019/06/RPMUsage/" class="article-date">
+  <time datetime="2019-06-24T16:00:00.000Z" itemprop="datePublished">2019-06-25</time>
 </a>
     
   </div>
@@ -213,7 +219,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/17/2016/2016-07-18-01/">一个简单的docker+swarm实例</a>
+      <a class="article-title" href="/2019/06/24/2019/06/RPMUsage/">RPM Usage</a>
     </h1>
   
 
@@ -221,20 +227,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>要搭建这个实例, 虚拟机是不可少的, 本人是在VirtualBox中搭建了三个Ubuntu16.04的图形界面的系统, 再加上主机本身就是Ubuntu16.04的, 总共就有四台可用机了, 不过, 怕把自己的电脑搞乱, 就只用了三个虚拟机</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">host-1 &#x3D;&gt; 10.72.2.43</span><br><span class="line">host-2 &#x3D;&gt; 10.72.2.44</span><br><span class="line">host-3 &#x3D;&gt; 10.72.2.45</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh file.rpm</span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
-            <a href="/2016/07/17/2016/2016-07-18-01/#more">Read More</a>
+            <a href="/2019/06/24/2019/06/RPMUsage/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/07/17/2016/2016-07-18-01/" data-id="ckcvf3lml000r2xr6e96ua50r" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2019/06/24/2019/06/RPMUsage/" data-id="ckd47q43k005k53uoe7sod7vt" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
 
     </footer>
   </div>
@@ -243,10 +248,10 @@
 
 
   
-    <article id="post-2016/2016-07-16-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2019/06/NodejsInstall" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/15/2016/2016-07-16-01/" class="article-date">
-  <time datetime="2016-07-15T16:00:00.000Z" itemprop="datePublished">2016-07-16</time>
+    <a href="/2019/06/24/2019/06/NodejsInstall/" class="article-date">
+  <time datetime="2019-06-24T16:00:00.000Z" itemprop="datePublished">2019-06-25</time>
 </a>
     
   </div>
@@ -257,7 +262,134 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/15/2016/2016-07-16-01/">安装Docker, Docker-compose (Ubuntu 16.04)</a>
+      <a class="article-title" href="/2019/06/24/2019/06/NodejsInstall/">Nodejs Install</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Simple-command-reference-site"><a href="#Simple-command-reference-site" class="headerlink" title="Simple command, reference site"></a>Simple command, reference <a href="https://nodejs.org/en/download/package-manager/#enterprise-linux-and-fedora" target="_blank" rel="noopener">site</a></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -</span><br><span class="line">yum -y install nodejs</span><br></pre></td></tr></table></figure>
+
+<h3 id="For-node-8-For-stable-recommend"><a href="#For-node-8-For-stable-recommend" class="headerlink" title="For node 8 (For stable , recommend)"></a>For node 8 (For stable , recommend)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; curl --silent --location https:&#x2F;&#x2F;rpm.nodesource.com&#x2F;setup_8.x | bash -</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2019/06/24/2019/06/NodejsInstall/" data-id="ckd47q43j005i53uo1nhwh3ym" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2019/06/KubesprayInstallKubernetes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/24/2019/06/KubesprayInstallKubernetes/" class="article-date">
+  <time datetime="2019-06-24T16:00:00.000Z" itemprop="datePublished">2019-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/24/2019/06/KubesprayInstallKubernetes/">Kubespray Install Kubernetes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Update-system"><a href="#Update-system" class="headerlink" title="Update system"></a>Update system</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release -y</span><br><span class="line">yum update -y</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2019/06/24/2019/06/KubesprayInstallKubernetes/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2019/06/24/2019/06/KubesprayInstallKubernetes/" data-id="ckd47q43i005g53uoalv60mkk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kubespray/" rel="tag">Kubespray</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2019/05/GitUsefulCommands" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/27/2019/05/GitUsefulCommands/" class="article-date">
+  <time datetime="2019-05-27T16:00:00.000Z" itemprop="datePublished">2019-05-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/27/2019/05/GitUsefulCommands/">Git Useful Commands</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Frequently used commands</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br><span class="line">git push</span><br><span class="line">git staus</span><br><span class="line">git add</span><br><span class="line">git commit -m &#39;commit message&#39;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2019/05/27/2019/05/GitUsefulCommands/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2019/05/27/2019/05/GitUsefulCommands/" data-id="ckd47q43e005853uo4uaw3ywy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2019/05/Centos7NewHostMachineInit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/20/2019/05/Centos7NewHostMachineInit/" class="article-date">
+  <time datetime="2019-05-20T16:00:00.000Z" itemprop="datePublished">2019-05-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/20/2019/05/Centos7NewHostMachineInit/">Centos7 New Host Machine Init</a>
     </h1>
   
 
@@ -266,22 +398,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>安装Docker可以直接使用这条命令, 全自动的, 它会缺什么装什么<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https:&#x2F;&#x2F;get.docker.com&#x2F; | sh</span><br></pre></td></tr></table></figure>
+<li><p>Set hostname</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname &lt;server-name&gt; &amp;&amp; exec bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Set more secure password</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ head -c 32 &#x2F;dev&#x2F;urandom | base64 | head -c 16</span><br><span class="line">$ passwd</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
         
           <p class="article-more-link">
-            <a href="/2016/07/15/2016/2016-07-16-01/#more">Read More</a>
+            <a href="/2019/05/20/2019/05/Centos7NewHostMachineInit/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/07/15/2016/2016-07-16-01/" data-id="ckcvf3lmk000p2xr64532h85h" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2019/05/20/2019/05/Centos7NewHostMachineInit/" data-id="ckd47q43d005653uo794jevyn" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos/" rel="tag">Centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
 
     </footer>
   </div>
@@ -290,10 +426,10 @@
 
 
   
-    <article id="post-2016/2016-07-15-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2019/05/NginxProxyConfig" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/14/2016/2016-07-15-01/" class="article-date">
-  <time datetime="2016-07-14T16:00:00.000Z" itemprop="datePublished">2016-07-15</time>
+    <a href="/2019/05/16/2019/05/NginxProxyConfig/" class="article-date">
+  <time datetime="2019-05-16T16:00:00.000Z" itemprop="datePublished">2019-05-17</time>
 </a>
     
   </div>
@@ -304,7 +440,50 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/14/2016/2016-07-15-01/">安装mesos (Ubuntu 16.04)</a>
+      <a class="article-title" href="/2019/05/16/2019/05/NginxProxyConfig/">Nginx Proxy Config</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Something about how to config nginx proxy</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/05/16/2019/05/NginxProxyConfig/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2019/05/16/2019/05/NginxProxyConfig/" data-id="ckd47q43g005b53uogmx241op" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2019/04/OpenrestyLuaFilterUserAgent" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/2019/04/OpenrestyLuaFilterUserAgent/" class="article-date">
+  <time datetime="2019-04-24T16:00:00.000Z" itemprop="datePublished">2019-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/2019/04/OpenrestyLuaFilterUserAgent/">Openresty Lua Filter User Agent</a>
     </h1>
   
 
@@ -313,200 +492,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>安装jdk7与一些依赖项, 必须得用jdk7呀<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:openjdk-r&#x2F;ppa  </span><br><span class="line">sudo apt-get update   </span><br><span class="line">sudo apt-get install openjdk-7-jdk  </span><br><span class="line"></span><br><span class="line">sudo apt-get install -y autoconf libtool</span><br><span class="line">sudo apt-get -y install build-essential python-dev libcurl4-nss-dev libsasl2-dev libsasl2-modules maven libapr1-dev libsvn-dev</span><br></pre></td></tr></table></figure>
-
+<li><p>Add <code>access_by_lua_file /test.lua;</code> in nginx.conf</p>
 </li>
+<li><p>test.lua</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">local userAgent &#x3D; ngx.req.get_headers()[&quot;User-Agent&quot;];</span><br><span class="line"></span><br><span class="line">local result, err &#x3D; ngx.re.match(userAgent, &quot;MSIE 7.0|MSIE 8.0&quot;);</span><br><span class="line"></span><br><span class="line">if result then</span><br><span class="line">  ngx.exit(403);</span><br><span class="line">end</span><br></pre></td></tr></table></figure></li>
 </ul>
-        
-          <p class="article-more-link">
-            <a href="/2016/07/14/2016/2016-07-15-01/#more">Read More</a>
-          </p>
-        
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/07/14/2016/2016-07-15-01/" data-id="ckcvf3lmj000m2xr61dlq6t07" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2019/04/24/2019/04/OpenrestyLuaFilterUserAgent/" data-id="ckd47q43c005353uoblrf8z3w" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mesos/" rel="tag">Mesos</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016/2016-07-14-01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/13/2016/2016-07-14-01/" class="article-date">
-  <time datetime="2016-07-13T16:00:00.000Z" itemprop="datePublished">2016-07-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/13/2016/2016-07-14-01/">Laravel框架的index.php文件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="laravel框架采用了单一入口的原则-所有的PHP逻辑请求处理都是以index-php为入口-所以研究它的源码当然是从index-php开始看起了"><a href="#laravel框架采用了单一入口的原则-所有的PHP逻辑请求处理都是以index-php为入口-所以研究它的源码当然是从index-php开始看起了" class="headerlink" title="laravel框架采用了单一入口的原则, 所有的PHP逻辑请求处理都是以index.php为入口, 所以研究它的源码当然是从index.php开始看起了."></a>laravel框架采用了单一入口的原则, 所有的PHP逻辑请求处理都是以index.php为入口, 所以研究它的源码当然是从index.php开始看起了.</h4>
-        
-          <p class="article-more-link">
-            <a href="/2016/07/13/2016/2016-07-14-01/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/07/13/2016/2016-07-14-01/" data-id="ckcvf3lmi000k2xr62bj99e1j" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016/2016-06-25-01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/06/24/2016/2016-06-25-01/" class="article-date">
-  <time datetime="2016-06-24T16:00:00.000Z" itemprop="datePublished">2016-06-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/24/2016/2016-06-25-01/">设计模式--装饰模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
-<li>动态地给一个对象添加一些额外的职责. 就增加功能来说, 装饰模式相比生成子类更为灵活</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2016/06/24/2016/2016-06-25-01/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/06/24/2016/2016-06-25-01/" data-id="ckcvf3lmh000h2xr6ccq18h9v" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016/2016-06-24-01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/06/23/2016/2016-06-24-01/" class="article-date">
-  <time datetime="2016-06-23T16:00:00.000Z" itemprop="datePublished">2016-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/23/2016/2016-06-24-01/">设计模式--责任鏈模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
-<li>使多个对象都有机会处理请求, 从而避免了请求的发送者和接受者之间的耦合关系, 将这些对象连成一条鏈,并沿着这条鏈传递该请求, 直到有对象处理它为止.</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2016/06/23/2016/2016-06-24-01/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/06/23/2016/2016-06-24-01/" data-id="ckcvf3lmg000f2xr6akg446qt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016/2016-06-23-01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/06/22/2016/2016-06-23-01/" class="article-date">
-  <time datetime="2016-06-22T16:00:00.000Z" itemprop="datePublished">2016-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/22/2016/2016-06-23-01/">设计模式--命令模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
-<li>将一个请求封装成一个对象, 从而让你使用不同的请求把客户端参数化, 对请求排队或者记录请求日志, 可以提供命令的撤销和恢复功能.</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2016/06/22/2016/2016-06-23-01/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/06/22/2016/2016-06-23-01/" data-id="ckcvf3lmd000c2xr6hlkvekpm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Openresty/" rel="tag">Openresty</a></li></ul>
 
     </footer>
   </div>
@@ -519,7 +517,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">« 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页 »</a>
+    <a class="extend prev" rel="prev" href="/">« 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">下一页 »</a>
   </nav>
 
 </section>
@@ -533,7 +531,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mesos/" rel="tag">Mesos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/" rel="tag">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/" rel="tag">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curl/" rel="tag">Curl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DataStructure/" rel="tag">DataStructure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Erlang/" rel="tag">Erlang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Haproxy/" rel="tag">Haproxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubespray/" rel="tag">Kubespray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mesos/" rel="tag">Mesos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Minikube/" rel="tag">Minikube</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Openresty/" rel="tag">Openresty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tmux/" rel="tag">Tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vagrant/" rel="tag">Vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li></ul>
     </div>
   </div>
 
@@ -543,7 +541,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Design-Pattern/" style="font-size: 17.5px;">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 12.5px;">Docker</a> <a href="/tags/Laravel/" style="font-size: 10px;">Laravel</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a>
+      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/AndroidStudio/" style="font-size: 10px;">AndroidStudio</a> <a href="/tags/C/" style="font-size: 15.71px;">C</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chrome/" style="font-size: 11.43px;">Chrome</a> <a href="/tags/Curl/" style="font-size: 10px;">Curl</a> <a href="/tags/DataStructure/" style="font-size: 14.29px;">DataStructure</a> <a href="/tags/Design-Pattern/" style="font-size: 18.57px;">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 12.86px;">Docker</a> <a href="/tags/Erlang/" style="font-size: 10px;">Erlang</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Haproxy/" style="font-size: 10px;">Haproxy</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Kubernetes/" style="font-size: 10px;">Kubernetes</a> <a href="/tags/Kubespray/" style="font-size: 10px;">Kubespray</a> <a href="/tags/Laravel/" style="font-size: 10px;">Laravel</a> <a href="/tags/Linux/" style="font-size: 17.14px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 11.43px;">MacOS</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Minikube/" style="font-size: 10px;">Minikube</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Openresty/" style="font-size: 11.43px;">Openresty</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SSH/" style="font-size: 11.43px;">SSH</a> <a href="/tags/Tmux/" style="font-size: 11.43px;">Tmux</a> <a href="/tags/Ubuntu/" style="font-size: 11.43px;">Ubuntu</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Vim/" style="font-size: 11.43px;">Vim</a> <a href="/tags/VirtualBox/" style="font-size: 11.43px;">VirtualBox</a>
     </div>
   </div>
 
@@ -552,7 +550,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
     </div>
   </div>
 
@@ -565,23 +563,23 @@
       <ul>
         
           <li>
-            <a href="/2016/08/12/2016/2016-08-13-01/">设计模式--桥梁模式</a>
+            <a href="/2020/07/27/2019/01/ErlangNestingResolution/">关于对erlang中由于没有return导致嵌套太深的解决办法</a>
           </li>
         
           <li>
-            <a href="/2016/08/10/2016/2016-08-11-01/">设计模式--解释器模式</a>
+            <a href="/2020/06/23/2020/06/VimConfig/">Vim Basic Config</a>
           </li>
         
           <li>
-            <a href="/2016/08/10/2016/2016-08-12-01/">设计模式--享元模式</a>
+            <a href="/2020/06/16/2020/06/ChromeDebugForMobile/">Chrome Debug For Mobile</a>
           </li>
         
           <li>
-            <a href="/2016/08/09/2016/2016-08-10-01/">设计模式--状态模式</a>
+            <a href="/2020/05/24/2020/05/NewMacbookSetup/">New Macbook Setup</a>
           </li>
         
           <li>
-            <a href="/2016/08/08/2016/2016-08-09-01/">设计模式--访问者模式</a>
+            <a href="/2020/03/19/2020/03/AndroidStudioCommands/">Android Studio Useful Commands</a>
           </li>
         
       </ul>

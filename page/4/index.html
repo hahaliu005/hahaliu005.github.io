@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Brady&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A full stack engineer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brady&#39;s Blog">
+<meta property="og:url" content="https://hahaliu005.github.io/page/4/index.html">
+<meta property="og:site_name" content="Brady&#39;s Blog">
+<meta property="og:description" content="A full stack engineer">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Brady Liu">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content=" React">
+<meta property="article:tag" content=" PHP">
+<meta property="article:tag" content=" Linux">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/fonts/GoogleFonts.css" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Brady&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Stay Foolish, Stay Hungry. 🙃</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hahaliu005.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2018/10/VirtualBoxInstall" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/19/2018/10/VirtualBoxInstall/" class="article-date">
+  <time datetime="2018-10-19T16:00:00.000Z" itemprop="datePublished">2018-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/19/2018/10/VirtualBoxInstall/">Install VirtualBox</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;download.virtualbox.org&#x2F;virtualbox&#x2F;rpm&#x2F;el&#x2F;virtualbox.repo -P &#x2F;etc&#x2F;yum.repos.d&#x2F;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2018/10/19/2018/10/VirtualBoxInstall/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/10/19/2018/10/VirtualBoxInstall/" data-id="ckd47q430004h53uohqqg5vrc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018/10/JenkinsInstall" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/18/2018/10/JenkinsInstall/" class="article-date">
+  <time datetime="2018-10-18T16:00:00.000Z" itemprop="datePublished">2018-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/18/2018/10/JenkinsInstall/">Jenkins Install</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="run"><a href="#run" class="headerlink" title="run"></a>run</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -u root -d -p 8080:8080 -p 50000:50000 -v ~&#x2F;data&#x2F;jenkins:&#x2F;var&#x2F;jenkins_home -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock jenkinsci&#x2F;blueocean</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/10/18/2018/10/JenkinsInstall/" data-id="ckd47q42w004c53uo2s6f0527" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2019/09/OpenChromeWithNoneSecurite" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/29/2019/09/OpenChromeWithNoneSecurite/" class="article-date">
+  <time datetime="2018-09-29T16:00:00.000Z" itemprop="datePublished">2018-09-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/29/2019/09/OpenChromeWithNoneSecurite/">Open Chrome With None Securite</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open  &#x2F;Applications&#x2F;Google\ Chrome.app --args --disable-web-security --user-data-dir</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/09/29/2019/09/OpenChromeWithNoneSecurite/" data-id="ckd47q43t006453uo2me2grej" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrome/" rel="tag">Chrome</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018/09/MacOSNetToolsInstall" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/02/2018/09/MacOSNetToolsInstall/" class="article-date">
+  <time datetime="2018-09-02T16:00:00.000Z" itemprop="datePublished">2018-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/02/2018/09/MacOSNetToolsInstall/">MacOS Net Tools Install</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install inetutils</span><br></pre></td></tr></table></figure>
+<p>This command will install some help net utils</p>
+<p>Including dnsdomainname ftp rcp rexec rlogin rsh telnet</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/09/02/2018/09/MacOSNetToolsInstall/" data-id="ckd47q42t004553uo1w730vjn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018/08/ImplementTheLinkList" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/05/2018/08/ImplementTheLinkList/" class="article-date">
+  <time datetime="2018-08-05T16:00:00.000Z" itemprop="datePublished">2018-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/05/2018/08/ImplementTheLinkList/">Implement The Link List</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Gist about implementation of link list.</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/05/2018/08/ImplementTheLinkList/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/08/05/2018/08/ImplementTheLinkList/" data-id="ckd47q42o003t53uo69bh4fx2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataStructure/" rel="tag">DataStructure</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018/08/MergeLinearList" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/05/2018/08/MergeLinearList/" class="article-date">
+  <time datetime="2018-08-05T16:00:00.000Z" itemprop="datePublished">2018-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/05/2018/08/MergeLinearList/">Merge Linear List</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Gist about merge linear list.</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/05/2018/08/MergeLinearList/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/08/05/2018/08/MergeLinearList/" data-id="ckd47q42p003u53uoe2sybss5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataStructure/" rel="tag">DataStructure</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018/08/PsshUsage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/05/2018/08/PsshUsage/" class="article-date">
+  <time datetime="2018-08-05T16:00:00.000Z" itemprop="datePublished">2018-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/05/2018/08/PsshUsage/">Pssh Usage</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>When there are many server need to manage , maybe you need to use pssh to manage your servers.</p>
+<p>First install pssh.</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/05/2018/08/PsshUsage/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/08/05/2018/08/PsshUsage/" data-id="ckd47q42q003w53uo5ovfajth" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018/08/RubyModuleVSClass" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/05/2018/08/RubyModuleVSClass/" class="article-date">
+  <time datetime="2018-08-05T16:00:00.000Z" itemprop="datePublished">2018-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/05/2018/08/RubyModuleVSClass/">The Distinguish Of Module , Class When Nested In Ruby</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>For Module can’t be instance , so can’t call it directily , include it to class , new the class and call module.</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/05/2018/08/RubyModuleVSClass/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/08/05/2018/08/RubyModuleVSClass/" data-id="ckd47q42r003y53uo5qq24o9t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018/08/TheOperateOfStack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/05/2018/08/TheOperateOfStack/" class="article-date">
+  <time datetime="2018-08-05T16:00:00.000Z" itemprop="datePublished">2018-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/05/2018/08/TheOperateOfStack/">The Operate Of Stack</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>About Operate Of Stack </p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/05/2018/08/TheOperateOfStack/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/08/05/2018/08/TheOperateOfStack/" data-id="ckd47q42s004153uoe54h5bln" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataStructure/" rel="tag">DataStructure</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018/08/TheUseOfStack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/05/2018/08/TheUseOfStack/" class="article-date">
+  <time datetime="2018-08-05T16:00:00.000Z" itemprop="datePublished">2018-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/05/2018/08/TheUseOfStack/">The Use Of Stack</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>About the use of stack.</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/05/2018/08/TheUseOfStack/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2018/08/05/2018/08/TheUseOfStack/" data-id="ckd47q42s004253uofbuj32vb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataStructure/" rel="tag">DataStructure</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">« 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">下一页 »</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/" rel="tag">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/" rel="tag">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curl/" rel="tag">Curl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DataStructure/" rel="tag">DataStructure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Erlang/" rel="tag">Erlang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Haproxy/" rel="tag">Haproxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubespray/" rel="tag">Kubespray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mesos/" rel="tag">Mesos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Minikube/" rel="tag">Minikube</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Openresty/" rel="tag">Openresty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tmux/" rel="tag">Tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vagrant/" rel="tag">Vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/AndroidStudio/" style="font-size: 10px;">AndroidStudio</a> <a href="/tags/C/" style="font-size: 15.71px;">C</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Chrome/" style="font-size: 11.43px;">Chrome</a> <a href="/tags/Curl/" style="font-size: 10px;">Curl</a> <a href="/tags/DataStructure/" style="font-size: 14.29px;">DataStructure</a> <a href="/tags/Design-Pattern/" style="font-size: 18.57px;">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 12.86px;">Docker</a> <a href="/tags/Erlang/" style="font-size: 10px;">Erlang</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Haproxy/" style="font-size: 10px;">Haproxy</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Kubernetes/" style="font-size: 10px;">Kubernetes</a> <a href="/tags/Kubespray/" style="font-size: 10px;">Kubespray</a> <a href="/tags/Laravel/" style="font-size: 10px;">Laravel</a> <a href="/tags/Linux/" style="font-size: 17.14px;">Linux</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 11.43px;">MacOS</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Minikube/" style="font-size: 10px;">Minikube</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Openresty/" style="font-size: 11.43px;">Openresty</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SSH/" style="font-size: 11.43px;">SSH</a> <a href="/tags/Tmux/" style="font-size: 11.43px;">Tmux</a> <a href="/tags/Ubuntu/" style="font-size: 11.43px;">Ubuntu</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Vim/" style="font-size: 11.43px;">Vim</a> <a href="/tags/VirtualBox/" style="font-size: 11.43px;">VirtualBox</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/27/2019/01/ErlangNestingResolution/">关于对erlang中由于没有return导致嵌套太深的解决办法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/23/2020/06/VimConfig/">Vim Basic Config</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/16/2020/06/ChromeDebugForMobile/">Chrome Debug For Mobile</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/24/2020/05/NewMacbookSetup/">New Macbook Setup</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/19/2020/03/AndroidStudioCommands/">Android Studio Useful Commands</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Brady Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//cdn.jsdelivr.net/npm/jquery@2.2.3/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
