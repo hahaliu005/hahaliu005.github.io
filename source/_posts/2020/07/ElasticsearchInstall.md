@@ -5,6 +5,7 @@ tags:
 date: 2020-07-28
 ---
 
+## For Centos7
 Import the Elasticsearch PGP Key
 ```
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
@@ -35,4 +36,15 @@ systemctl enable elasticsearch
 systemctl start elasticsearch
 systemctl status elasticsearch
 ```
+
+## For MacOS
+Tap the Elastic Homebrew repository:
+```
+brew tap elastic/tap
+```
+Install
+```
+brew install elastic/tap/elasticsearch-full
+```
+
 

@@ -8,6 +8,8 @@ date: 2019-07-01
 # Bridge connecting
 Simply choose `Setting => Bridged Adapter`
 
+<!-- more -->
+
 # NAT connecting
 It need add two network adapter, nat and host only
 - `Preferences => Network` to add an Nat network

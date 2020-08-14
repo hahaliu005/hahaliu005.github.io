@@ -21,3 +21,8 @@ Diff from prev version
 git diff HEAD@{1}
 git diff HEAD^
 ```
+
+Change editor to vim
+```
+git config --global core.editor "vim"
+```
