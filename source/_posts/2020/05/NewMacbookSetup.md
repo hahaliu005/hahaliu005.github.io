@@ -29,6 +29,11 @@ date: 2020-05-25
 - Keyboard -> Text -> uncheck all the checkbox in the setting page
 - Siri -> Disable siri
 
+### Local app setting
+* Finder
+Preferences -> Advanced -> When performing a search -> Search the Current Folder
+Toolbar -> View -> Show Path Bar
+
 ### Install wireguard
 
 ### Remove all the app from Dock that don’t use
