@@ -1,7 +1,7 @@
 ---
 title: Centos7 New Host Machine Init
 tags:
-  - Centos
+  - CentOS
   - Linux
 date: 2019-05-21
 ---

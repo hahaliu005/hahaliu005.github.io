@@ -99,4 +99,9 @@ networks:
 
 volumes:
   db-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/work/data
 ```

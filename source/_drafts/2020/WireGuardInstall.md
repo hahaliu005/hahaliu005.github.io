@@ -34,3 +34,51 @@ qrencode -t ansiutf8 < /etc/wireguard/client.conf
 Issues
 ---
 ## For install failed, maybe you need to reboot ubunt system 
+
+Check wireguard status
+```
+systemctl status wg-quick@wg0
+```
+
+# TCP Mode
+
+## Server side
+Edit /etc/wireguard/wg0.conf, Only list updated field
+```
+[Interface]
+# No need ipv6, If set ipv6, MTU=1280 will occur error
+Address = 10.66.11.1/24
+MTU=1280
+[Peer]
+# No need ipv6, If set ipv6, MTU=1280 will occur error
+AllowedIPs = 10.66.11.2/32
+```
+
+Download server bin & unzip & run: https://github.com/wangyu-/udp2raw-tunnel/releases
+```
+./udp2raw_amd64 -s -l0.0.0.0:4096 -r 127.0.0.1:7777  -a -k "passwd" --raw-mode faketcp
+```
+
+
+## Client side
+Install pcap and libnet
+```
+brew install libpcap libnet
+```
+
+Edit Client config file, Only list updated field. remove ipv6 field add MTU etc.
+```
+[Interface]
+Address = 10.66.11.2/32
+MTU = 1280
+
+[Peer]
+AllowedIPs = 0.0.0.0/0
+Endpoint = 127.0.0.1:3333
+```
+
+Download client bin & unzip & run: https://github.com/wangyu-/udp2raw-multiplatform/releases
+```
+## Need sudo
+sudo ./udp2raw_mp_mac -c -l0.0.0.0:3333  -r104.233.224.112:4096 -k "passwd" --raw-mode easy-faketcp
+```

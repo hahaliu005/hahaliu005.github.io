@@ -9,6 +9,8 @@ Visual studio code config , keep update
 
 <!-- more -->
 
+Use 'Shift+Command+P' => Open Settings(JSON)  to Open json setting.
+
 ```json
 {
     // Controls the font size in pixels.
@@ -43,26 +45,13 @@ Visual studio code config , keep update
     "vim.easymotion": true,
     // What key should `<leader>` map to in remappings?
     "vim.leader": ",",
-    // Switch input method automatically when mode changed.
-    "vim.autoSwitchInputMethod.enable": true,
-    // The input method for your normal mode, find more information [here](https://github.com/VSCodeVim/Vim#input-method).
-    "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
-    // The shell command to get current input method.
-    "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/local/bin/im-select",
-    // The shell command to switch input method.
-    "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select  {im}",
     // Uses a hack to move around folds properly.
     "vim.foldfix": true,
-  // Show all matches of the most recent search pattern.
+    // Show all matches of the most recent search pattern.
     "vim.hlsearch": true,
     // Enable the [Sneak](https://github.com/justinmk/vim-sneak) plugin for Vim.
     "vim.sneak": true,
 }
-```
-
-Install im-select for vim plugin
-```
-curl -Ls https://raw.githubusercontent.com/daipeihust/im-select/master/install_mac.sh | sh
 ```
 
 Enable press and hold repeat

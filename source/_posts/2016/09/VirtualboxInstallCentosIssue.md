@@ -2,7 +2,7 @@
 title: Virtualbox安装centos7.2问题汇总
 tags:
   - Virtualbox
-  - Centos
+  - CentOS
 date: 2016-09-01
 ---
 

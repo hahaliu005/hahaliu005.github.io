@@ -8,6 +8,9 @@ date: 2020-06-24
 这些基本的Vim配置能满足基本的编辑需求
 
 <!-- more -->
+
+Pub below config to ~/.vimrc file
+
 ```
 " Enables syntax highlighting.
 syntax on

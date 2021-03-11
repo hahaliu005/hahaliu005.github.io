@@ -30,6 +30,12 @@ Create user
 grant select,insert,update,delete on *.* to username@"hostname" identified by "password";
 ```
 
+Set user password
+```
+SET PASSWORD FOR 'root'@'localhost' = 'password'; 
+flush privileges;
+```
+
 Add column
 ```
 alter table table_name add column <column_name> <column_option>
