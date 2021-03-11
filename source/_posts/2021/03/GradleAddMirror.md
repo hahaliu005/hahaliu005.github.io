@@ -5,7 +5,6 @@ tags:
 date: 2021-03-06
 ---
 
-<!-- more -->
 
 For system: ~/.gradle/init.gradle
 ```
@@ -26,8 +25,10 @@ allprojects {
 }
 ```
 
+<!-- more -->
+
 For single project: build.gradle
->>> buildscript block must before plugins block
+> buildscript block must before plugins block
 ```
 buildscript {
     repositories {

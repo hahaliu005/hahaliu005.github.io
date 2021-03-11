@@ -23,7 +23,7 @@ php -r "unlink('composer-setup.php');"
 ```
 
 # Issues
-## Memory limit error, It sometime occurs in version 1, you can update composer to version 2+, or use command below.
+Memory limit error, It sometime occurs in version 1, you can update composer to version 2+, or use command below.
 ```
 COMPOSER_MEMORY_LIMIT=-1 composer [command]
 ```

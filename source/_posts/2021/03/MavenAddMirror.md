@@ -5,7 +5,6 @@ tags:
 date: 2021-03-06
 ---
 
-<!-- more -->
 For System: ~/.m2/settings.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -25,6 +24,8 @@ For System: ~/.m2/settings.xml
     </mirrors>
 </settings>
 ```
+
+<!-- more -->
 
 For project: pom.xml
 ```xml
