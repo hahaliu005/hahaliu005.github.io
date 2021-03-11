@@ -70,49 +70,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2019/01/ErlangNestingResolution" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/03/11/2019/01/ErlangNestingResolution/" class="article-date">
-  <time datetime="2021-03-11T02:57:49.949Z" itemprop="datePublished">2021-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/11/2019/01/ErlangNestingResolution/">关于对erlang中由于没有return导致嵌套太深的解决办法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在一些语言中,比如erlang,是没有return语句的,这也就意味着像一些需要立即返回的语句,erlang却无法做到,比如说以下的c语言:</p>
-        
-          <p class="article-more-link">
-            <a href="/2021/03/11/2019/01/ErlangNestingResolution/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2021/03/11/2019/01/ErlangNestingResolution/" data-id="ckm4a6zep00a614tgevlw8lr6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Erlang/" rel="tag">Erlang</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-2021/03/GradleAddMirror" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/03/05/2021/03/GradleAddMirror/" class="article-date">
@@ -135,24 +92,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-
-<p>For system: ~/.gradle/init.gradle</p>
+        <p>For system: ~/.gradle/init.gradle</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        def ALIYUN_REPOSITORY_URL &#x3D; &#39;https:&#x2F;&#x2F;maven.aliyun.com&#x2F;repository&#x2F;public&#39;</span><br><span class="line">        all &#123; ArtifactRepository repo -&gt;</span><br><span class="line">            if(repo instanceof MavenArtifactRepository)&#123;</span><br><span class="line">                def url &#x3D; repo.url.toString()</span><br><span class="line">                if (url.startsWith(&#39;https:&#x2F;&#x2F;repo1.maven.org&#x2F;maven2&#39;)) &#123;</span><br><span class="line">                    project.logger.lifecycle &quot;Repository $&#123;repo.url&#125; replaced by $ALIYUN_REPOSITORY_URL.&quot;</span><br><span class="line">                    remove repo</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        maven &#123; url ALIYUN_REPOSITORY_URL &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>For single project: build.gradle</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>buildscript block must before plugins block</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        maven &#123; url &#39;https:&#x2F;&#x2F;maven.aliyun.com&#x2F;repository&#x2F;public&#39; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        maven &#123; url &#39;https:&#x2F;&#x2F;maven.aliyun.com&#x2F;repository&#x2F;public&#39; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2021/03/05/2021/03/GradleAddMirror/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2021/03/05/2021/03/GradleAddMirror/" data-id="ckm4a6zh700gh14tgbnnz8cqq" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2021/03/05/2021/03/GradleAddMirror/" data-id="ckm4apaid00cs0zpnamm10o1j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li></ul>
@@ -186,16 +136,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<p>For System: ~/.m2/settings.xml</p>
+        <p>For System: ~/.m2/settings.xml</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/SETTINGS/1.0.0"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Add mirrors here --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- Aliyun --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>      </span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>For project: pom.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2021/03/05/2021/03/MavenAddMirror/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2021/03/05/2021/03/MavenAddMirror/" data-id="ckm4a6zh800gj14tgck1w9wk4" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2021/03/05/2021/03/MavenAddMirror/" data-id="ckm4apaif00cv0zpn31p8b8yb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li></ul>
@@ -240,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2021/02/10/2021/02/AboutZsh/" data-id="ckm4a6zh500gc14tg7kzdhiix" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2021/02/10/2021/02/AboutZsh/" data-id="ckm4apaib00cn0zpn608wgf89" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zsh/" rel="tag">Zsh</a></li></ul>
@@ -280,12 +231,13 @@
 
 <h2 id="For-Linux"><a href="#For-Linux" class="headerlink" title="For Linux"></a>For Linux</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">php -r &quot;copy(&#39;https:&#x2F;&#x2F;getcomposer.org&#x2F;installer&#39;, &#39;composer-setup.php&#39;);&quot;</span><br><span class="line">php -r &quot;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) &#x3D;&#x3D;&#x3D; &#39;756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3&#39;) &#123; echo &#39;Installer verified&#39;; &#125; else &#123; echo &#39;Installer corrupt&#39;; unlink(&#39;composer-setup.php&#39;); &#125; echo PHP_EOL;&quot;</span><br><span class="line">php composer-setup.php --install-dir&#x3D;&#x2F;usr&#x2F;local&#x2F;bin --filename&#x3D;composer</span><br><span class="line">php -r &quot;unlink(&#39;composer-setup.php&#39;);&quot;</span><br></pre></td></tr></table></figure>
 
-<h1 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h1><h2 id="Memory-limit-error-It-sometime-occurs-in-version-1-you-can-update-composer-to-version-2-or-use-command-below"><a href="#Memory-limit-error-It-sometime-occurs-in-version-1-you-can-update-composer-to-version-2-or-use-command-below" class="headerlink" title="Memory limit error, It sometime occurs in version 1, you can update composer to version 2+, or use command below."></a>Memory limit error, It sometime occurs in version 1, you can update composer to version 2+, or use command below.</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COMPOSER_MEMORY_LIMIT&#x3D;-1 composer [command]</span><br></pre></td></tr></table></figure>
+<h1 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h1><p>Memory limit error, It sometime occurs in version 1, you can update composer to version 2+, or use command below.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COMPOSER_MEMORY_LIMIT&#x3D;-1 composer [command]</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2021/02/06/2021/02/PHPComposerUsage/" data-id="ckm4a6zh600ge14tg1hr33if3" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2021/02/06/2021/02/PHPComposerUsage/" data-id="ckm4apaic00cq0zpn7x6oafro" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Composer/" rel="tag">Composer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
@@ -329,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2020/07/27/2020/07/ElasticsearchInstall/" data-id="ckm4a6zh300ga14tg1uk16otb" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2020/07/27/2020/07/ElasticsearchInstall/" data-id="ckm4apaia00cl0zpngjen4x99" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
@@ -372,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2020/06/23/2020/06/VimConfig/" data-id="ckm4a6zh200g714tgb0ss7d38" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2020/06/23/2020/06/VimConfig/" data-id="ckm4apai800ci0zpn26micszc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li></ul>
@@ -411,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2020/06/16/2020/06/ChromeDebugForMobile/" data-id="ckm4a6zh900gm14tgf64w56yn" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2020/06/16/2020/06/ChromeDebugForMobile/" data-id="ckm4apaig00cx0zpn3fkmfete" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrome/" rel="tag">Chrome</a></li></ul>
@@ -454,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2020/05/24/2020/05/NewMacbookSetup/" data-id="ckm4a6zha00go14tgaob56gvn" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2020/05/24/2020/05/NewMacbookSetup/" data-id="ckm4apaih00d00zpn9ypyektk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
@@ -497,10 +449,54 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2020/04/16/2020/04/AndroidStudioEmulatorUsage/" data-id="ckm4a6zhb00gr14tgcvf731bt" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2020/04/16/2020/04/AndroidStudioEmulatorUsage/" data-id="ckm4apaii00d20zpna7ml95fc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2020/03/AndroidStudioCommands" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/19/2020/03/AndroidStudioCommands/" class="article-date">
+  <time datetime="2020-03-19T16:00:00.000Z" itemprop="datePublished">2020-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/19/2020/03/AndroidStudioCommands/">Android Studio Useful Commands</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>list avds</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Library&#x2F;Android&#x2F;sdk&#x2F;emulator&#x2F;emulator -list-avds</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2020/03/19/2020/03/AndroidStudioCommands/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2020/03/19/2020/03/AndroidStudioCommands/" data-id="ckm4apai700cg0zpnd5p09c6l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AndroidStudio/" rel="tag">AndroidStudio</a></li></ul>
 
     </footer>
   </div>
@@ -559,10 +555,6 @@
       <ul>
         
           <li>
-            <a href="/2021/03/11/2019/01/ErlangNestingResolution/">关于对erlang中由于没有return导致嵌套太深的解决办法</a>
-          </li>
-        
-          <li>
             <a href="/2021/03/05/2021/03/GradleAddMirror/">Gradle Add mirror</a>
           </li>
         
@@ -576,6 +568,10 @@
         
           <li>
             <a href="/2021/02/06/2021/02/PHPComposerUsage/">Composer Usage</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/2020/07/ElasticsearchInstall/">Elasticsearch Install</a>
           </li>
         
       </ul>
