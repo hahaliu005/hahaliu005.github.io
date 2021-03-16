@@ -70,6 +70,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2016/10/ChangeSshPort" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/03/2016/10/ChangeSshPort/" class="article-date">
+  <time datetime="2016-10-03T16:00:00.000Z" itemprop="datePublished">2016-10-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/03/2016/10/ChangeSshPort/">Change ssh port</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Open the ssh config file , change port config<br>vim /etc/ssh/sshd_config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Port 8194</span><br></pre></td></tr></table></figure>
+
+<p>将默认的防火墙切换为iptables:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y iptables-services</span><br><span class="line">systemctl disable firewalld</span><br><span class="line">systemctl mask firewalld</span><br><span class="line">systemctl enable iptables</span><br><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl start iptables</span><br></pre></td></tr></table></figure>
+
+<p>如果有iptables</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;sysconfig&#x2F;iptables</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 8194 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart  iptables.service</span><br><span class="line">systemctl restart sshd.service</span><br></pre></td></tr></table></figure>
+
+<p>Install semanage:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install policycoreutils-python</span><br></pre></td></tr></table></figure>
+
+<p>Open port use semanage:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">semanage port -a -t ssh_port_t -p tcp 1234</span><br></pre></td></tr></table></figure>
+<p>上面这条会等很久，然后可能会出错，不用管，已经加上去了</p>
+<p>List semange port:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">semanage port -l | grep ssh</span><br></pre></td></tr></table></figure>
+
+<p>Open firewall:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone&#x3D;public --add-port&#x3D;8194&#x2F;tcp</span><br></pre></td></tr></table></figure>
+
+<p>Reload firewall:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>Restart sshd:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd.service</span><br></pre></td></tr></table></figure>
+
+<p>如果是iptables, 把firewall的步骤改为以下步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;sysconfig&#x2F;iptables</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 8194 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart  iptables.service</span><br><span class="line">systemctl restart sshd.service</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2016/10/03/2016/10/ChangeSshPort/" data-id="ckmbosib9004b12tk9w6pcawa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2016/10/DockerSwarm" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/10/01/2016/10/DockerSwarm/" class="article-date">
@@ -97,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/10/01/2016/10/DockerSwarm/" data-id="ckmbojmrp004e3kqrcws237g2" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2016/10/01/2016/10/DockerSwarm/" data-id="ckmbosiba004e12tk4yd89c1a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
@@ -138,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/09/29/2016/09/DockerWarningIpv4ForwardingIsDisabled/" data-id="ckmbojmrh003z3kqr957t24ns" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2016/09/29/2016/09/DockerWarningIpv4ForwardingIsDisabled/" data-id="ckmbosib2003z12tkf82x8zxe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
@@ -189,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/09/12/2016/09/LaravelDatePicker/" data-id="ckmbojmrk00443kqrc7j37jdb" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2016/09/12/2016/09/LaravelDatePicker/" data-id="ckmbosib5004412tkhjb2gbo3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li></ul>
@@ -227,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/09/08/2016/09/IECompatible/" data-id="ckmbojmrj00413kqrckzd92rn" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2016/09/08/2016/09/IECompatible/" data-id="ckmbosib3004112tk3bwt2hf7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -270,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/09/07/2016/09/VirtualBoxFileShare/" data-id="ckmbojmrl00463kqr98yo68j5" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2016/09/07/2016/09/VirtualBoxFileShare/" data-id="ckmbosib6004612tk0t82hk48" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li></ul>
@@ -309,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/08/31/2016/09/VirtualboxInstallCentosIssue/" data-id="ckmbojmrn00493kqr094b66ia" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2016/08/31/2016/09/VirtualboxInstallCentosIssue/" data-id="ckmbosib7004912tk65am9lq3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/" rel="tag">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Virtualbox/" rel="tag">Virtualbox</a></li></ul>
@@ -352,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/08/12/2016/08/2016-08-13-01/" data-id="ckmbojmrg003w3kqrh6mi32wi" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2016/08/12/2016/08/2016-08-13-01/" data-id="ckmbosib1003w12tkeay4fv0n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
@@ -395,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/08/10/2016/08/2016-08-12-01/" data-id="ckmbojmrd003u3kqr0q1r52id" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2016/08/10/2016/08/2016-08-12-01/" data-id="ckmbosiay003u12tk4apk84ph" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
@@ -438,50 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/08/10/2016/08/2016-08-11-01/" data-id="ckmbojmrc003r3kqr9vamgivw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016/08/2016-08-10-01" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/09/2016/08/2016-08-10-01/" class="article-date">
-  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/09/2016/08/2016-08-10-01/">设计模式--状态模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>当一个对象内在状态改变时允许其改变行为, 这个对象看起来像改变了其类</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/08/09/2016/08/2016-08-10-01/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hahaliu005.github.io/2016/08/09/2016/08/2016-08-10-01/" data-id="ckmbojmrb003p3kqr300pcpru" class="article-share-link">Share</a>
+      <a data-url="https://hahaliu005.github.io/2016/08/10/2016/08/2016-08-11-01/" data-id="ckmbosiax003r12tkfq2j5ydv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
@@ -521,7 +548,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Algorithm/" style="font-size: 12.73px;">Algorithm</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 10px;">AndroidStudio</a> <a href="/tags/C/" style="font-size: 18.18px;">C</a> <a href="/tags/CSS/" style="font-size: 14.55px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 14.55px;">CentOS</a> <a href="/tags/Certbot/" style="font-size: 10px;">Certbot</a> <a href="/tags/Chrome/" style="font-size: 10.91px;">Chrome</a> <a href="/tags/Composer/" style="font-size: 10px;">Composer</a> <a href="/tags/Copied/" style="font-size: 14.55px;">Copied</a> <a href="/tags/Curl/" style="font-size: 10px;">Curl</a> <a href="/tags/DataStructure/" style="font-size: 17.27px;">DataStructure</a> <a href="/tags/Design-Pattern/" style="font-size: 19.09px;">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 16.36px;">Docker</a> <a href="/tags/Editor/" style="font-size: 10px;">Editor</a> <a href="/tags/Elasticsearch/" style="font-size: 10px;">Elasticsearch</a> <a href="/tags/Erlang/" style="font-size: 10px;">Erlang</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/HTML/" style="font-size: 15.45px;">HTML</a> <a href="/tags/Haproxy/" style="font-size: 10px;">Haproxy</a> <a href="/tags/Influxdb/" style="font-size: 10px;">Influxdb</a> <a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/JQuery/" style="font-size: 11.82px;">JQuery</a> <a href="/tags/Javascript/" style="font-size: 14.55px;">Javascript</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Kubernetes/" style="font-size: 10.91px;">Kubernetes</a> <a href="/tags/Kubespray/" style="font-size: 10px;">Kubespray</a> <a href="/tags/Laravel/" style="font-size: 14.55px;">Laravel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Logrotate/" style="font-size: 10px;">Logrotate</a> <a href="/tags/Lua/" style="font-size: 10px;">Lua</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 15.45px;">MacOS</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Minikube/" style="font-size: 10px;">Minikube</a> <a href="/tags/Mysql/" style="font-size: 16.36px;">Mysql</a> <a href="/tags/NFS/" style="font-size: 10.91px;">NFS</a> <a href="/tags/Nginx/" style="font-size: 14.55px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10.91px;">Nodejs</a> <a href="/tags/Openresty/" style="font-size: 13.64px;">Openresty</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/Plupload/" style="font-size: 10px;">Plupload</a> <a href="/tags/Redis/" style="font-size: 11.82px;">Redis</a> <a href="/tags/RegularExpression/" style="font-size: 10px;">RegularExpression</a> <a href="/tags/Rsync/" style="font-size: 10px;">Rsync</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SSH/" style="font-size: 13.64px;">SSH</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Supervisor/" style="font-size: 10px;">Supervisor</a> <a href="/tags/Systemctl/" style="font-size: 10px;">Systemctl</a> <a href="/tags/Tmux/" style="font-size: 10.91px;">Tmux</a> <a href="/tags/Ubuntu/" style="font-size: 12.73px;">Ubuntu</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Vim/" style="font-size: 10.91px;">Vim</a> <a href="/tags/VirtualBox/" style="font-size: 11.82px;">VirtualBox</a> <a href="/tags/Virtualbox/" style="font-size: 10.91px;">Virtualbox</a> <a href="/tags/VisualStudioCode/" style="font-size: 10px;">VisualStudioCode</a> <a href="/tags/Zsh/" style="font-size: 10px;">Zsh</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a>
+      <a href="/tags/Algorithm/" style="font-size: 12.73px;">Algorithm</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 10px;">AndroidStudio</a> <a href="/tags/C/" style="font-size: 18.18px;">C</a> <a href="/tags/CSS/" style="font-size: 14.55px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 14.55px;">CentOS</a> <a href="/tags/Certbot/" style="font-size: 10px;">Certbot</a> <a href="/tags/Chrome/" style="font-size: 10.91px;">Chrome</a> <a href="/tags/Composer/" style="font-size: 10px;">Composer</a> <a href="/tags/Copied/" style="font-size: 14.55px;">Copied</a> <a href="/tags/Curl/" style="font-size: 10px;">Curl</a> <a href="/tags/DataStructure/" style="font-size: 17.27px;">DataStructure</a> <a href="/tags/Design-Pattern/" style="font-size: 19.09px;">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 16.36px;">Docker</a> <a href="/tags/Editor/" style="font-size: 10px;">Editor</a> <a href="/tags/Elasticsearch/" style="font-size: 10px;">Elasticsearch</a> <a href="/tags/Erlang/" style="font-size: 10px;">Erlang</a> <a href="/tags/Git/" style="font-size: 10.91px;">Git</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/HTML/" style="font-size: 15.45px;">HTML</a> <a href="/tags/Haproxy/" style="font-size: 10px;">Haproxy</a> <a href="/tags/Influxdb/" style="font-size: 10px;">Influxdb</a> <a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/JQuery/" style="font-size: 11.82px;">JQuery</a> <a href="/tags/Javascript/" style="font-size: 14.55px;">Javascript</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Kubernetes/" style="font-size: 10.91px;">Kubernetes</a> <a href="/tags/Kubespray/" style="font-size: 10px;">Kubespray</a> <a href="/tags/Laravel/" style="font-size: 14.55px;">Laravel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Logrotate/" style="font-size: 10px;">Logrotate</a> <a href="/tags/Lua/" style="font-size: 10px;">Lua</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 15.45px;">MacOS</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Minikube/" style="font-size: 10px;">Minikube</a> <a href="/tags/Mysql/" style="font-size: 16.36px;">Mysql</a> <a href="/tags/NFS/" style="font-size: 10.91px;">NFS</a> <a href="/tags/Nginx/" style="font-size: 14.55px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10.91px;">Nodejs</a> <a href="/tags/Openresty/" style="font-size: 13.64px;">Openresty</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/Plupload/" style="font-size: 10px;">Plupload</a> <a href="/tags/Redis/" style="font-size: 11.82px;">Redis</a> <a href="/tags/RegularExpression/" style="font-size: 10px;">RegularExpression</a> <a href="/tags/Rsync/" style="font-size: 10px;">Rsync</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SSH/" style="font-size: 13.64px;">SSH</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Supervisor/" style="font-size: 10px;">Supervisor</a> <a href="/tags/Systemctl/" style="font-size: 10px;">Systemctl</a> <a href="/tags/Tmux/" style="font-size: 10.91px;">Tmux</a> <a href="/tags/Ubuntu/" style="font-size: 12.73px;">Ubuntu</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Vim/" style="font-size: 10.91px;">Vim</a> <a href="/tags/VirtualBox/" style="font-size: 11.82px;">VirtualBox</a> <a href="/tags/Virtualbox/" style="font-size: 10.91px;">Virtualbox</a> <a href="/tags/VisualStudioCode/" style="font-size: 10px;">VisualStudioCode</a> <a href="/tags/Zsh/" style="font-size: 10px;">Zsh</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a>
     </div>
   </div>
 
@@ -543,6 +570,10 @@
       <ul>
         
           <li>
+            <a href="/2021/03/10/2021/03/GithubMirror/">Github Mirrors</a>
+          </li>
+        
+          <li>
             <a href="/2021/03/10/2021/03/HomebrewUsage/">Homebrew Usage</a>
           </li>
         
@@ -556,10 +587,6 @@
         
           <li>
             <a href="/2021/02/10/2021/02/AboutZsh/">About Zsh</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/06/2021/02/PHPComposerUsage/">Composer Usage</a>
           </li>
         
       </ul>
