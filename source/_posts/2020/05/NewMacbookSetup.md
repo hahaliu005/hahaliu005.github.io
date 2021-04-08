@@ -65,6 +65,6 @@ bindkey "^J" backward-word
 
 ### Install tmux, htop : brew install tmux htop
 
-### Install MacVIM For temp note tool
+### Install sequel-ace:  brew install --cask sequel-ace
 
-### Install dnsmasq for local domain resolver
+### Install MacVIM For temp note tool
