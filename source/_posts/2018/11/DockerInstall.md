@@ -13,31 +13,36 @@ curl -sSL https://get.docker.com/ | sh
 <!-- more -->
 
 ## Install for production environment
+### Uninstall old versions
 ```shell
-# install requirements
-yum install -y yum-utils device-mapper-persistent-data lvm2
-# add docker-ce repo
-yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
-# index repo
-yum makecache fast
-# list the docker-ce version
-yum list docker-ce.x86_64  --showduplicates | sort -r
-# instal latest version with yum install -y docker-ce
-# or install the specified version by list above
-yum install -y docker-ce-<VERSION>
-# add user to docker group
-usermod -aG docker <username>
-```
-### One command to install, latest stable docker
-```
-yum install -y yum-utils device-mapper-persistent-data lvm2 && \
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
-yum makecache fast && \
-yum install -y docker-ce
+yum remove docker \
+  docker-client \
+  docker-client-latest \
+  docker-common \
+  docker-latest \
+  docker-latest-logrotate \
+  docker-logrotate \
+  docker-engine
 ```
 
+### Set up the repository
+```shell
+yum install -y yum-utils
+yum-config-manager \
+  --add-repo \
+  https://download.docker.com/linux/centos/docker-ce.repo
+```
+
+### Install latest docker
+```shell
+yum install -y docker-ce docker-ce-cli containerd.io
+```
+
+## Install docker-compose
+```shell
+curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
 
 > If some of your log redirect to stdout, want to rotate log, you can config daemon.json
 ```

@@ -12,6 +12,11 @@ date: 2021-02-07
 brew install composer
 ```
 
+## For MacOS brew
+```
+brew install composer
+```
+
 <!-- moe -->
 
 ## For Linux
