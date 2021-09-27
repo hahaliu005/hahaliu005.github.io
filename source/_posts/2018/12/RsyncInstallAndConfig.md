@@ -52,3 +52,5 @@ rsync -vza -e 'ssh -p 8194' root@62.210.140.106:/data/resources /data
 ```
 rsync -qza -e ssh —delete brady@192.168.8.115:/data /databak
 ```
+
+> 删除多余的文件，使用`--delete`，例如：`rsync --delete [from] [target]`

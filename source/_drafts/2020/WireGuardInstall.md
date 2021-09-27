@@ -18,6 +18,7 @@ wget https://raw.githubusercontent.com/pimlie/ubuntu-mainline-kernel.sh/master/u
 chmod +x ubuntu-mainline-kernel.sh
 ./ubuntu-mainline-kernel.sh -i v5.6.19
 ```
+> Maybe you will get `The following packages have unmet dependencies:` error, Just use command `apt install -f ` to fix it.
 
 After Upgrade kernel version, reboot system
 
