@@ -52,4 +52,8 @@ colorscheme desert
 
 " Disable bell in MacVim
 set vb
+
+" Fix: when use vim in iterm2, 'shift+g' or 'gg' cause flash white screen
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 ```

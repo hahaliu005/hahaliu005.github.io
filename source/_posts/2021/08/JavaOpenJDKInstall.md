@@ -12,4 +12,7 @@ yum install -y java-11-openjdk java-11-openjdk-devel
 
 <!-- more -->
 
-Over
+## Install jdk 17
+```
+yum install -y java-17-openjdk java-17-openjdk-devel
+```
