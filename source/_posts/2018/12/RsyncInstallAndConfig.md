@@ -35,6 +35,7 @@ Then you can connect to rsync server use rsync client
 ```
 rsync -av --password-file=/etc/rsyncd.pass test@[hostIp]::test /data/test
 ```
+> /etc/rsyncd.pass 仅需要放置密码文本
 > Notice: /etc/rsyncd.pass store the password of test user, you must set permission to 600 `chmod 600 /etc/rsyncd.pass`
 
 
