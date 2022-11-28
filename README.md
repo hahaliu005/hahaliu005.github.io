@@ -1,1 +1,1 @@
-No need to do anything, just edit yout posts and then commit and push, travis will detect it and begin to build blog and push to master branch.
+No need to do anything, just edit yout posts and then commit and push, github action will detect it and begin to build blog and push to gh-pages branch.
