@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>HttpGuard | Brady&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HttpGuard是基于openresty,以lua脚本语言开发的防cc攻击软件。而openresty是集成了高性能web服务器Nginx，以及一系列的Nginx模块，这其中最重要的，也是我们主要用到的nginx lua模块。HttpGuard基于nginx lua开发，继承了nginx高并发，高性能的特点，可以以非常小的性能损耗来防范大规模的cc攻击。下面介绍HttpGuard防cc的一些特性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HttpGuard">
+<meta property="og:url" content="https://hahaliu005.github.io/2016/10/28/2016/10/HttpGuard/index.html">
+<meta property="og:site_name" content="Brady&#39;s Blog">
+<meta property="og:description" content="HttpGuard是基于openresty,以lua脚本语言开发的防cc攻击软件。而openresty是集成了高性能web服务器Nginx，以及一系列的Nginx模块，这其中最重要的，也是我们主要用到的nginx lua模块。HttpGuard基于nginx lua开发，继承了nginx高并发，高性能的特点，可以以非常小的性能损耗来防范大规模的cc攻击。下面介绍HttpGuard防cc的一些特性。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2016-10-28T16:00:00.000Z">
+<meta property="article:author" content="Brady Liu">
+<meta property="article:tag" content="Copied">
+<meta property="article:tag" content="Nginx">
+<meta property="article:tag" content="Openresty">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/fonts/GoogleFonts.css" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Brady&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Stay Foolish, Stay Hungry. 🙃</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hahaliu005.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016/10/HttpGuard" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/28/2016/10/HttpGuard/" class="article-date">
+  <time datetime="2016-10-28T16:00:00.000Z" itemprop="datePublished">2016-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HttpGuard
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HttpGuard是基于openresty,以lua脚本语言开发的防cc攻击软件。而openresty是集成了高性能web服务器Nginx，以及一系列的Nginx模块，这其中最重要的，也是我们主要用到的nginx lua模块。HttpGuard基于nginx lua开发，继承了nginx高并发，高性能的特点，可以以非常小的性能损耗来防范大规模的cc攻击。<br>下面介绍HttpGuard防cc的一些特性。</p>
+<span id="more"></span>
+
+<p>限制访客在一定时间内的请求次数<br>向访客发送302转向响应头来识别恶意用户,并阻止其再次访问<br>向访客发送带有跳转功能的js代码来识别恶意用户，并阻止其再次访问<br>向访客发送cookie来识别恶意用户,并阻止其再次访问<br>支持向访客发送带有验证码的页面，来进一步识别，以免误伤<br>支持直接断开恶意访客的连接<br>支持结合iptables来阻止恶意访客再次连接<br>支持白名单功能<br>支持根据统计特定端口的连接数来自动开启或关闭防cc模式<br>github项目地址：<a target="_blank" rel="noopener" href="https://github.com/centos-bz/HttpGuard">https://github.com/centos-bz/HttpGuard</a><br>联系作者： admin#centos.bz<br>一、安装openresty或者nginx lua<br>在安装HttpGuard之前，需要先安装openresty或者nginx lua，有三种方法：<br>使用ezhttp一键安装<a target="_blank" rel="noopener" href="https://www.lxconfig.com/thread-52-1-1.html">https://www.lxconfig.com/thread-52-1-1.html</a><br>按照openresty官网手动安装<a target="_blank" rel="noopener" href="http://openresty.com/">http://openresty.com/</a><br>安装Nginx并安装nginx_lua模块</p>
+<p>二、安装HttpGuard<br>假设我们把HttpGuard安装到&#x2F;data&#x2F;www&#x2F;waf&#x2F;，当然你可以选择安装在任意目录,nginx运行的用户为www。<br>cd &#x2F;data&#x2F;www<br>wget –no-check-certificate <a target="_blank" rel="noopener" href="https://github.com/centos-bz/HttpGuard/archive/master.zip">https://github.com/centos-bz/HttpGuard/archive/master.zip</a><br>unzip master.zip<br>mv HttpGuard-master waf<br>chown www waf&#x2F;logs<br>三、生成验证码图片(可选)<br>为了支持验证码识别用户，我们需要先生成验证码图片。生成验证码图片需要系统安装有php，以及php-gd模块。</p>
+<p>以命令行执行getImg.php文件</p>
+<p>cd &#x2F;data&#x2F;www&#x2F;waf&#x2F;captcha&#x2F;<br>&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin&#x2F;php getImg.php<br>复制代码<br>大概要生成一万个图片，可能需要花几分钟的时间。<br>四、修改nginx.conf配置文件<br>向http区块输入如下代码：</p>
+<p>lua_package_path “&#x2F;data&#x2F;www&#x2F;waf&#x2F;?.lua”;<br>lua_shared_dict guard_dict 100m;<br>lua_shared_dict dict_captcha 70m;<br>init_by_lua_file ‘&#x2F;data&#x2F;www&#x2F;waf&#x2F;init.lua’;<br>access_by_lua_file ‘&#x2F;data&#x2F;www&#x2F;waf&#x2F;runtime.lua’;<br>lua_max_running_timers 1;<br>复制代码<br>记得要修改相关的路径。<br>五、配置HttpGuard<br>HttpGuard全部的配置项都在config.lua文件中,请根据以下文章修改配置文件。<br><a target="_blank" rel="noopener" href="https://www.lxconfig.com/thread-121-1-1.html">https://www.lxconfig.com/thread-121-1-1.html</a></p>
+<p> – HttpGuard安装目录，修改为实际安装到的目录。</p>
+<p>baseDir &#x3D; ‘&#x2F;data&#x2F;www&#x2F;waf&#x2F;‘<br>复制代码<br>        – key是否动态生成,可选static,dynamic,如果选dynamic,下面所有的keySecret不需要更改,如果选static,修改手动修改下面的keySecret</p>
+<p>keyDefine &#x3D; “dynamic”,<br>复制代码</p>
+<pre><code>    -- 被动防御,限制请求模块。根据在一定时间内统计到的请求次数作限制,建议始终开启
+    -- state : 为此模块的状态，表示开启或关闭，可选值为On或Off。此项为全局开关,还可以针对单个网站设置开关。当全局开关为off时，在某一网站的server&#123;&#125;代码块中加入set $limit_module on;,表示单独对这个网站开启防攻击,当全局开关为on时，在某一网站的server&#123;&#125;代码块中加入set $limit_module off;,表示单独对这个网站关闭防攻击。
+    -- maxReqs，amongTime : 在amongTime秒内允许请求的最大次数maxReqs，如默认的是在10s内最大允许请求50次。
+    -- urlProtect : 指定限制请求次数的url正则表达式文件，默认值为\.php$，表示只限制php的请求(当然，当urlMatchMode = &quot;uri&quot;时，此正则才能起作用)
+</code></pre>
+<p>limitReqModules &#x3D; { state &#x3D; “On” , maxReqs &#x3D; 50 , amongTime &#x3D; 10, urlProtect &#x3D; baseDir..”url-protect&#x2F;limit.txt” },<br>复制代码</p>
+<pre><code>    -- 主动防御,302响应头跳转模块。利用cc控制端不支持解析响应头的特点，来识别是否为正常用户，当有必要时才建议开启。
+    -- state : 为此模块的状态，表示开启或关闭，可选值为On或Off。此项为全局开关,还可以针对单个网站设置开关。当全局开关为off时，在某一网站的server&#123;&#125;代码块中加入set $redirect_module on;,表示单独对这个网站开启防攻击,当全局开关为on时，在某一网站的server&#123;&#125;代码块中加入set $redirect_module off;,表示单独对这个网站关闭防攻击。
+    -- verifyMaxFail  amongTime : 因为此模块会发送带有cckey及keyexpire的302响应头，如果访客在amongTime时间内超过verifyMaxFail次没有跳转到302响应头里的url，就会被添加到黑名单，默认值为5次。
+    -- keySecret : 用于生成token的密码,如果上面的keyDefine为dynamic，就不需要修改
+    -- urlProtect  同limitReqModules模块中的urlProtect的解释。
+</code></pre>
+<p>redirectModules &#x3D; { state &#x3D; “Off” ,verifyMaxFail &#x3D; 5, keySecret &#x3D; ‘yK48J276hg’, amongTime &#x3D; 60 ,urlProtect &#x3D; baseDir..”url-protect&#x2F;302.txt”},<br>复制代码</p>
+<pre><code>    -- 主动防御,发送js跳转代码模块。利用cc控制端无法解析js跳转的特点，来识别是否为正常用户，当有必要时才建议开启。
+    -- state : 为此模块的状态，表示开启或关闭，可选值为On或Off。此项为全局开关,还可以针对单个网站设置开关。当全局开关为off时，在某一网站的server&#123;&#125;代码块中加入set $js_module on;,表示单独对这个网站开启防攻击,当全局开关为on时，在某一网站的server&#123;&#125;代码块中加入set $js_module off;,表示单独对这个网站关闭防攻击。
+    -- verifyMaxFail  amongTime : 因为此模块会发送带有js跳转代码的响应体，如果访客在amongTime时间内超过verifyMaxFail次没有跳转到js跳转代码里的url，就会被添加到黑名单，默认值为5次。
+    -- keySecret : 用于生成token的密码,如果上面的keyDefine为dynamic，就不需要修改
+    -- urlProtect  同limitReqModules模块中的urlProtect的解释。
+</code></pre>
+<p>JsJumpModules &#x3D; { state &#x3D; “Off” ,verifyMaxFail &#x3D; 5, keySecret &#x3D; ‘QSjL6p38h9’, amongTime &#x3D; 60 , urlProtect &#x3D; baseDir..”url-protect&#x2F;js.txt”},<br>复制代码</p>
+<pre><code>    -- 主动防御,发送cookie验证模块。此模块会向访客发送cookie，然后等待访客返回正确的cookie，此模块利用cc控制端无法支持cookie的特点，来识别cc攻击,当有必要时才建议开启
+    -- state : 为此模块的状态，表示开启或关闭，可选值为On或Off。此项为全局开关,还可以针对单个网站设置开关。当全局开关为off时，在某一网站的server&#123;&#125;代码块中加入set $cookie_module on;,表示单独对这个网站开启防攻击,当全局开关为on时，在某一网站的server&#123;&#125;代码块中加入set $cookie_module off;,表示单独对这个网站关闭防攻击。
+    -- verifyMaxFail  amongTime : 因为此模块会发送cookie，如果访客在amongTime时间内超过verifyMaxFail次没有返回正确的cookie，就会被添加到黑名单，默认值为5次。
+    -- keySecret : 用于生成token的密码,如果上面的keyDefine为dynamic，就不需要修改
+    -- urlProtect  同limitReqModules模块中的urlProtect的解释。        
+</code></pre>
+<p>cookieModules &#x3D; { state &#x3D; “Off” ,verifyMaxFail &#x3D; 5, keySecret &#x3D; ‘bGMfY2D5t3’, amongTime &#x3D; 60 , urlProtect &#x3D; baseDir..”url-protect&#x2F;cookie.txt”},<br>复制代码</p>
+<pre><code>    -- 自动开启主动防御,原理是根据protectPort端口的已连接数超过maxConnection来确定
+    -- state : 为此模块的状态，表示开启或关闭，可选值为On或Off;
+    -- interval  间隔30秒检查一次连接数，默认为30秒。
+    -- protectPort，maxConnection,normalTimes,exceedTimes :  enableModule中的模块为关闭状态时，当端口protectPort的连接数连续exceedTimes次超过maxConnection时，开启enableModule中的模块；
+    -- enableModule中的模块为开启状态时，当端口protectPort的连接数连续normalTimes次低于maxConnection时，关闭enableModule中的模块。
+    -- ssCommand  : 我们是使用ss命令来检查特定端口的已连接的连接数，ss命令比同类的命令netstat快得多。请把ss命令的路径改为自己系统上的路径。
+    -- enableModules : 自动启动哪个主动防御模块,可选值为redirectModules JsJumpModules cookieModules
+</code></pre>
+<p>autoEnable &#x3D; { state &#x3D; “off”, protectPort &#x3D; “80”, interval &#x3D; 30, normalTimes &#x3D; 3,exceedTimes &#x3D; 2,maxConnection &#x3D; 500, ssCommand &#x3D; “&#x2F;usr&#x2F;sbin&#x2F;ss” ,enableModule &#x3D; “redirectModules”},<br>复制代码</p>
+<pre><code>    -- 用于当输入验证码验证通过时,生成key的密码.如果上面的keyDefine为dynamic，就不需要修改
+</code></pre>
+<p>captchaKey &#x3D; “K4QEaHjwyF”,<br>复制代码</p>
+<pre><code>    -- ip在黑名单时执行的动作(可选值captcha,forbidden,iptables)
+    -- 值为captcha时,表示ip在黑名单后返回带有验证码的页面,输入正确的验证码才允许继续访问网站
+    -- 值为forbidden时,表示ip在黑名单后,服务器会直接断开与用户的连接.
+    -- 值为iptables时,表示ip在黑名单后,HttpGuard会用iptables封锁此ip的连接
+    -- 当值为iptables时,需要为nginx运行用户设置密码及添加到sudo以便能执行iptables命令。假设nginx运行用户为www,设置方法为：
+    -- 1.设置www密码，命令为passwd www。并把密码填入下面的sudoPass        -- 2.以根用户执行visudo命令，添加www  ALL=(root) /sbin/iptables -I INPUT -p tcp -s [0-9.]* --dport 80 -j DROP
+    -- 3.以根用户执行visudo命令，找到Default requiretty注释，即更改为#Default requiretty，如果找不到此设置，就不需要改。
+</code></pre>
+<p>blockAction &#x3D; “captcha”,<br>复制代码</p>
+<pre><code>    -- nginx运行用户的sudo密码,blockAction值为iptables需要设置,否则不需要
+</code></pre>
+<p>sudoPass &#x3D; ‘’,<br>复制代码</p>
+<pre><code>    -- 表示HttpGuard封锁ip的时间
+</code></pre>
+<p>blockTime &#x3D; 600,<br>复制代码</p>
+<pre><code>    -- JsJumpModules redirectModules cookieModules验证通过后,ip在白名单的时间
+</code></pre>
+<p>whiteTime &#x3D; 600,<br>复制代码</p>
+<pre><code>    -- 用于生成token密码的key过期时间
+</code></pre>
+<p>keyExpire &#x3D; 600,<br>复制代码</p>
+<pre><code>    -- 匹配url模式，可选值requestUri,uri
+    -- 值requestUri时,url-protect目录下的正则匹配的是浏览器最初请求的地址且没有被decode,带参数的链接。
+    -- 值为uri时, url-protect目录下的正则匹配的是经过重写过的地址,不带参数,且已经decode.
+    -- 如果使用requestUri模式，需要匹配参数，记得转义问号，即\?
+</code></pre>
+<p>urlMatchMode &#x3D; “uri”,<br>复制代码</p>
+<pre><code>    -- 验证码页面路径,一般不需要修改
+</code></pre>
+<p>captchaPage &#x3D; baseDir..”html&#x2F;captcha.html”,<br>复制代码</p>
+<pre><code>    -- 输入验证码错误时显示的页面路径,一般不需要修改
+</code></pre>
+<p>reCaptchaPage &#x3D; baseDir..”html&#x2F;reCatchaPage.html”,<br>复制代码</p>
+<pre><code>    -- 白名单ip文件,文件内容为正则表达式。
+</code></pre>
+<p>whiteIpModules &#x3D; { state &#x3D; “Off”, ipList &#x3D; baseDir..”url-protect&#x2F;white_ip_list.txt” },<br>复制代码</p>
+<pre><code>    -- 如果需要从请求头获取真实ip,此值就需要设置,如x-forwarded-for
+    -- 当state为on时,此设置才有效
+</code></pre>
+<p>realIpFromHeader &#x3D; { state &#x3D; “Off”, header &#x3D; “x-forwarded-for”},<br>复制代码</p>
+<pre><code>    -- 指定验证码图片目录,一般不需要修改
+</code></pre>
+<p>captchaDir &#x3D; baseDir..”captcha&#x2F;“,<br>复制代码</p>
+<pre><code>    -- 是否开启debug日志
+</code></pre>
+<p>debug &#x3D; false,<br>复制代码</p>
+<pre><code>    --日志目录,一般不需要修改.但需要设置logs所有者为nginx运行用户，如nginx运行用户为www，则命令为chown www logs
+</code></pre>
+<p>logPath &#x3D; baseDir..”logs&#x2F;“,<br>复制代码</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2016/10/28/2016/10/HttpGuard/" data-id="clb0tiuum003xg3on3uhbcaax" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Copied/" rel="tag">Copied</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Openresty/" rel="tag">Openresty</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/30/2016/10/VirtualboxResizeDisk/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Virtualbox中调整虚拟机的硬盘大小
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/25/2016/10/LuaLuaRestyRedis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">利用 Lua 的函数式编程简化 lua-resty-redis 的使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/" rel="tag">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/" rel="tag">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Certbot/" rel="tag">Certbot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/" rel="tag">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Composer/" rel="tag">Composer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Copied/" rel="tag">Copied</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curl/" rel="tag">Curl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DataStructure/" rel="tag">DataStructure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editor/" rel="tag">Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Erlang/" rel="tag">Erlang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Haproxy/" rel="tag">Haproxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Influxdb/" rel="tag">Influxdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ingress/" rel="tag">Ingress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iptables/" rel="tag">Iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubespray/" rel="tag">Kubespray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logrotate/" rel="tag">Logrotate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mesos/" rel="tag">Mesos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Minikube/" rel="tag">Minikube</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NFS/" rel="tag">NFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Openresty/" rel="tag">Openresty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plupload/" rel="tag">Plupload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RegularExpression/" rel="tag">RegularExpression</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rsync/" rel="tag">Rsync</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervisor/" rel="tag">Supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Systemctl/" rel="tag">Systemctl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tmux/" rel="tag">Tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vagrant/" rel="tag">Vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Virtualbox/" rel="tag">Virtualbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudioCode/" rel="tag">VisualStudioCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zsh/" rel="tag">Zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 12.5px;">Algorithm</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 10px;">AndroidStudio</a> <a href="/tags/C/" style="font-size: 17.5px;">C</a> <a href="/tags/CSS/" style="font-size: 14.17px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 14.17px;">CentOS</a> <a href="/tags/Certbot/" style="font-size: 10px;">Certbot</a> <a href="/tags/Chrome/" style="font-size: 11.67px;">Chrome</a> <a href="/tags/Composer/" style="font-size: 10px;">Composer</a> <a href="/tags/Copied/" style="font-size: 14.17px;">Copied</a> <a href="/tags/Curl/" style="font-size: 10px;">Curl</a> <a href="/tags/DataStructure/" style="font-size: 16.67px;">DataStructure</a> <a href="/tags/Design-Pattern/" style="font-size: 18.33px;">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 15.83px;">Docker</a> <a href="/tags/Editor/" style="font-size: 10px;">Editor</a> <a href="/tags/Elasticsearch/" style="font-size: 10px;">Elasticsearch</a> <a href="/tags/Erlang/" style="font-size: 10px;">Erlang</a> <a href="/tags/Git/" style="font-size: 11.67px;">Git</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/Haproxy/" style="font-size: 10px;">Haproxy</a> <a href="/tags/Influxdb/" style="font-size: 10px;">Influxdb</a> <a href="/tags/Ingress/" style="font-size: 10px;">Ingress</a> <a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/JQuery/" style="font-size: 11.67px;">JQuery</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 14.17px;">Javascript</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Kubernetes/" style="font-size: 10.83px;">Kubernetes</a> <a href="/tags/Kubespray/" style="font-size: 10px;">Kubespray</a> <a href="/tags/Laravel/" style="font-size: 14.17px;">Laravel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Logrotate/" style="font-size: 10px;">Logrotate</a> <a href="/tags/Lua/" style="font-size: 10px;">Lua</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 15px;">MacOS</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Minikube/" style="font-size: 10px;">Minikube</a> <a href="/tags/Mysql/" style="font-size: 15.83px;">Mysql</a> <a href="/tags/NFS/" style="font-size: 10.83px;">NFS</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10.83px;">Nodejs</a> <a href="/tags/Openresty/" style="font-size: 13.33px;">Openresty</a> <a href="/tags/PHP/" style="font-size: 19.17px;">PHP</a> <a href="/tags/Plupload/" style="font-size: 10px;">Plupload</a> <a href="/tags/Redis/" style="font-size: 11.67px;">Redis</a> <a href="/tags/RegularExpression/" style="font-size: 10px;">RegularExpression</a> <a href="/tags/Rsync/" style="font-size: 10px;">Rsync</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SSH/" style="font-size: 13.33px;">SSH</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Supervisor/" style="font-size: 10px;">Supervisor</a> <a href="/tags/Systemctl/" style="font-size: 10px;">Systemctl</a> <a href="/tags/Tmux/" style="font-size: 10.83px;">Tmux</a> <a href="/tags/Ubuntu/" style="font-size: 12.5px;">Ubuntu</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Vim/" style="font-size: 10.83px;">Vim</a> <a href="/tags/VirtualBox/" style="font-size: 11.67px;">VirtualBox</a> <a href="/tags/Virtualbox/" style="font-size: 10.83px;">Virtualbox</a> <a href="/tags/VisualStudioCode/" style="font-size: 10px;">VisualStudioCode</a> <a href="/tags/Zsh/" style="font-size: 10px;">Zsh</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/21/2021/12/ListeningPort/">Get Application Listening Port</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/11/2021/11/ChromeFixCertInvalid/">Chrome Fix NET::ERR_CERT_INVALID Cann&#39;t Access Site</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/22/2021/08/GitInstall/">Git Install</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/22/2021/08/JavaOpenJDKInstall/">Java OpenJDK Install</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/15/2021/08/IngressNginxConfigration/">Ingress nginx configration</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Brady Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//cdn.jsdelivr.net/npm/jquery@2.2.3/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

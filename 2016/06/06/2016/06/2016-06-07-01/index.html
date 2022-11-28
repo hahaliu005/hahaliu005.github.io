@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>设计模式--模板方法模式 | Brady&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="模板方法模式简单来说就是继承, 即把子类都有并完全相同的方法提取至父类, 而在子类中不同的方法只在父类中定义抽象方法.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式--模板方法模式">
+<meta property="og:url" content="https://hahaliu005.github.io/2016/06/06/2016/06/2016-06-07-01/index.html">
+<meta property="og:site_name" content="Brady&#39;s Blog">
+<meta property="og:description" content="模板方法模式简单来说就是继承, 即把子类都有并完全相同的方法提取至父类, 而在子类中不同的方法只在父类中定义抽象方法.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-06-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2016-06-06T16:00:00.000Z">
+<meta property="article:author" content="Brady Liu">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="Design Pattern">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/fonts/GoogleFonts.css" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Brady&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Stay Foolish, Stay Hungry. 🙃</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hahaliu005.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016/06/2016-06-07-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/06/2016/06/2016-06-07-01/" class="article-date">
+  <time datetime="2016-06-06T16:00:00.000Z" itemprop="datePublished">2016-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      设计模式--模板方法模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>模板方法模式简单来说就是继承, 即把子类都有并完全相同的方法提取至父类, 而在子类中不同的方法只在父类中定义抽象方法.</li>
+</ul>
+<span id="more"></span>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">HummerModel</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$isAlarm</span> = <span class="literal">true</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>)</span>;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">stop</span>(<span class="params"></span>)</span>;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">alarm</span>(<span class="params"></span>)</span>;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">engineBoom</span>(<span class="params"></span>)</span>;</span><br><span class="line">    <span class="comment">// 抽象方法中的统一方法应该为final, 不应该再让子类继承</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">start</span>();</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">engineBoom</span>();</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;isAlarm) &#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">alarm</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">stop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HummerH1Model</span> <span class="keyword">extends</span> <span class="title">HummerModel</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 初始化时定义自己的属性, 如是否有喇叭</span></span><br><span class="line">        <span class="variable language_">$this</span>-&gt;isAlarm = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;HummerH1 start\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">stop</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;HummerH1 stop\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">alarm</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;HummerH1 alarm\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">engineBoom</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;HummerH1 engineBoom\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HummerH2Model</span> <span class="keyword">extends</span> <span class="title">HummerModel</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 没喇叭了, 就不会去执行alarm()了</span></span><br><span class="line">        <span class="variable language_">$this</span>-&gt;isAlarm = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;HummerH2 start\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">stop</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;HummerH2 stop\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">alarm</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;HummerH2 alarm\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">engineBoom</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;HummerH2 engineBoom\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$hummerH1</span> = <span class="keyword">new</span> <span class="title class_">HummerH1Model</span>();</span><br><span class="line"><span class="variable">$hummerH1</span>-&gt;<span class="title function_ invoke__">run</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;=====\n&quot;</span>;</span><br><span class="line"><span class="variable">$hummerH2</span> = <span class="keyword">new</span> <span class="title class_">HummerH2Model</span>();</span><br><span class="line"><span class="variable">$hummerH2</span>-&gt;<span class="title function_ invoke__">run</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">/** output</span></span><br><span class="line"><span class="comment">HummerH1 engineBoom</span></span><br><span class="line"><span class="comment">HummerH1 alarm</span></span><br><span class="line"><span class="comment">HummerH1 stop</span></span><br><span class="line"><span class="comment">=====</span></span><br><span class="line"><span class="comment">HummerH2 start</span></span><br><span class="line"><span class="comment">HummerH2 engineBoom</span></span><br><span class="line"><span class="comment">HummerH2 stop</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>封装不变部分, 扩展可变部分, 提取公共部分代码, 便于维护, 行为由父类控制, 子类实现</p>
+</li>
+<li><p>此模式主要用于多个子类有公有的方法, 并且逻辑基本相同时, 或者在编写一些复杂的算法, 或者是重构时.</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2016/06/06/2016/06/2016-06-07-01/" data-id="clb0tiutq001yg3onarng457l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/07/2016/06/2016-06-08-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          设计模式--建造者模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/05/2016/06/2016-06-06-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">设计模式--工厂模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/" rel="tag">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/" rel="tag">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Certbot/" rel="tag">Certbot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/" rel="tag">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Composer/" rel="tag">Composer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Copied/" rel="tag">Copied</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curl/" rel="tag">Curl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DataStructure/" rel="tag">DataStructure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editor/" rel="tag">Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Erlang/" rel="tag">Erlang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Haproxy/" rel="tag">Haproxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Influxdb/" rel="tag">Influxdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ingress/" rel="tag">Ingress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iptables/" rel="tag">Iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubespray/" rel="tag">Kubespray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logrotate/" rel="tag">Logrotate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mesos/" rel="tag">Mesos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Minikube/" rel="tag">Minikube</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NFS/" rel="tag">NFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Openresty/" rel="tag">Openresty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plupload/" rel="tag">Plupload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RegularExpression/" rel="tag">RegularExpression</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rsync/" rel="tag">Rsync</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervisor/" rel="tag">Supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Systemctl/" rel="tag">Systemctl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tmux/" rel="tag">Tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vagrant/" rel="tag">Vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Virtualbox/" rel="tag">Virtualbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudioCode/" rel="tag">VisualStudioCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zsh/" rel="tag">Zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 12.5px;">Algorithm</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 10px;">AndroidStudio</a> <a href="/tags/C/" style="font-size: 17.5px;">C</a> <a href="/tags/CSS/" style="font-size: 14.17px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 14.17px;">CentOS</a> <a href="/tags/Certbot/" style="font-size: 10px;">Certbot</a> <a href="/tags/Chrome/" style="font-size: 11.67px;">Chrome</a> <a href="/tags/Composer/" style="font-size: 10px;">Composer</a> <a href="/tags/Copied/" style="font-size: 14.17px;">Copied</a> <a href="/tags/Curl/" style="font-size: 10px;">Curl</a> <a href="/tags/DataStructure/" style="font-size: 16.67px;">DataStructure</a> <a href="/tags/Design-Pattern/" style="font-size: 18.33px;">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 15.83px;">Docker</a> <a href="/tags/Editor/" style="font-size: 10px;">Editor</a> <a href="/tags/Elasticsearch/" style="font-size: 10px;">Elasticsearch</a> <a href="/tags/Erlang/" style="font-size: 10px;">Erlang</a> <a href="/tags/Git/" style="font-size: 11.67px;">Git</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/Haproxy/" style="font-size: 10px;">Haproxy</a> <a href="/tags/Influxdb/" style="font-size: 10px;">Influxdb</a> <a href="/tags/Ingress/" style="font-size: 10px;">Ingress</a> <a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/JQuery/" style="font-size: 11.67px;">JQuery</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 14.17px;">Javascript</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Kubernetes/" style="font-size: 10.83px;">Kubernetes</a> <a href="/tags/Kubespray/" style="font-size: 10px;">Kubespray</a> <a href="/tags/Laravel/" style="font-size: 14.17px;">Laravel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Logrotate/" style="font-size: 10px;">Logrotate</a> <a href="/tags/Lua/" style="font-size: 10px;">Lua</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 15px;">MacOS</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Minikube/" style="font-size: 10px;">Minikube</a> <a href="/tags/Mysql/" style="font-size: 15.83px;">Mysql</a> <a href="/tags/NFS/" style="font-size: 10.83px;">NFS</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10.83px;">Nodejs</a> <a href="/tags/Openresty/" style="font-size: 13.33px;">Openresty</a> <a href="/tags/PHP/" style="font-size: 19.17px;">PHP</a> <a href="/tags/Plupload/" style="font-size: 10px;">Plupload</a> <a href="/tags/Redis/" style="font-size: 11.67px;">Redis</a> <a href="/tags/RegularExpression/" style="font-size: 10px;">RegularExpression</a> <a href="/tags/Rsync/" style="font-size: 10px;">Rsync</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SSH/" style="font-size: 13.33px;">SSH</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Supervisor/" style="font-size: 10px;">Supervisor</a> <a href="/tags/Systemctl/" style="font-size: 10px;">Systemctl</a> <a href="/tags/Tmux/" style="font-size: 10.83px;">Tmux</a> <a href="/tags/Ubuntu/" style="font-size: 12.5px;">Ubuntu</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Vim/" style="font-size: 10.83px;">Vim</a> <a href="/tags/VirtualBox/" style="font-size: 11.67px;">VirtualBox</a> <a href="/tags/Virtualbox/" style="font-size: 10.83px;">Virtualbox</a> <a href="/tags/VisualStudioCode/" style="font-size: 10px;">VisualStudioCode</a> <a href="/tags/Zsh/" style="font-size: 10px;">Zsh</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/21/2021/12/ListeningPort/">Get Application Listening Port</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/11/2021/11/ChromeFixCertInvalid/">Chrome Fix NET::ERR_CERT_INVALID Cann&#39;t Access Site</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/22/2021/08/GitInstall/">Git Install</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/22/2021/08/JavaOpenJDKInstall/">Java OpenJDK Install</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/15/2021/08/IngressNginxConfigration/">Ingress nginx configration</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Brady Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//cdn.jsdelivr.net/npm/jquery@2.2.3/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>利用正则表达式排除特定字符串 | Brady&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="查找不以baidu开头的字符串baidu.comsina.com.cn正则：^(?!baidu).$  匹配结果就是第2行，也就是第1行被排除了这里使用了零宽度断言(?!exp),注意，我们有一个向前查找的语法(也叫顺序环视)  (?&#x3D;exp)(?&#x3D;exp) 会查找exp之前的【位置】如果将等号换成感叹号，就变成了否定语义，也就是说查找的位置的后面不能是exp一般情况下?!要与">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用正则表达式排除特定字符串">
+<meta property="og:url" content="https://hahaliu005.github.io/2016/11/16/2016/11/RegularExpressionExcludeWord/index.html">
+<meta property="og:site_name" content="Brady&#39;s Blog">
+<meta property="og:description" content="查找不以baidu开头的字符串baidu.comsina.com.cn正则：^(?!baidu).$  匹配结果就是第2行，也就是第1行被排除了这里使用了零宽度断言(?!exp),注意，我们有一个向前查找的语法(也叫顺序环视)  (?&#x3D;exp)(?&#x3D;exp) 会查找exp之前的【位置】如果将等号换成感叹号，就变成了否定语义，也就是说查找的位置的后面不能是exp一般情况下?!要与">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-11-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2016-11-16T16:00:00.000Z">
+<meta property="article:author" content="Brady Liu">
+<meta property="article:tag" content="Copied">
+<meta property="article:tag" content="RegularExpression">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/fonts/GoogleFonts.css" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Brady&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Stay Foolish, Stay Hungry. 🙃</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hahaliu005.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016/11/RegularExpressionExcludeWord" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/16/2016/11/RegularExpressionExcludeWord/" class="article-date">
+  <time datetime="2016-11-16T16:00:00.000Z" itemprop="datePublished">2016-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用正则表达式排除特定字符串
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="查找不以baidu开头的字符串"><a href="#查找不以baidu开头的字符串" class="headerlink" title="查找不以baidu开头的字符串"></a>查找不以baidu开头的字符串</h3><p>baidu.com<br>sina.com.cn<br>正则：^(?!baidu).<em>$  匹配结果就是第2行，也就是第1行被排除了<br>这里使用了零宽度断言(?!exp),注意，我们有一个向前查找的语法(也叫顺序环视)  (?&#x3D;exp)<br>(?&#x3D;exp) 会查找exp之前的【位置】如果将等号换成感叹号，就变成了否定语义，也就是说查找的位置的后面不能是exp<br>一般情况下?!要与特定的锚点相结合，例如^行开头或者$行结尾，那么上面的例子的意思如下：<br>^(?!baidu).</em>$ 先匹配一个行开头的位置，并且要求接下来的位置的后面不是baidu这个字符串。这样由于第一行^之后的位置后面是baidu所以匹配失败，被排除在外了。</p>
+<span id="more"></span>
+
+<h3 id="查找不以com结尾的字符串"><a href="#查找不以com结尾的字符串" class="headerlink" title="查找不以com结尾的字符串"></a>查找不以com结尾的字符串</h3><p><a target="_blank" rel="noopener" href="http://www.sina.com.cn/">www.sina.com.cn</a><br><a target="_blank" rel="noopener" href="http://www.educ.org/">www.educ.org</a><br><a target="_blank" rel="noopener" href="http://www.hao.cc/">www.hao.cc</a><br><a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a><br><a target="_blank" rel="noopener" href="http://www.123.com/">www.123.com</a></p>
+<p>正则 ^.<em>?(?&lt;!com)$  匹配前3行结果。<br>如果查找以com结尾的字符串则使用正则 ^.</em>?(?&lt;&#x3D;com)$或者 ^.<em>?com$<br>对正则表达式的解释：^.</em>?(?&lt;!com)$<br>首先匹配行开头，然后是 .<em>? 这个是忽略优先，也就是优先忽略不匹配任何字符，(?&lt;!com) 这个是一个逆序环视的否定形式，意思是匹配一个位置此位置的前面不能是字符串com，最后是一个行结束。对于<a target="_blank" rel="noopener" href="http://www.123.com来说,首先匹配行首,接着匹配w后面的位置,发现前面不是com,所以成功但紧接着要匹配行尾,失败,回溯让/">www.123.com来说，首先匹配行首，接着匹配w后面的位置，发现前面不是com，所以成功但紧接着要匹配行尾，失败，回溯让</a>.</em>? 匹配一个w符号，接着(?&lt;com)匹配第二个w后面的位置，发现前面也不是com匹配成功，紧接着要匹配$对应的行尾失败，一直到.<em>?匹配了<a target="_blank" rel="noopener" href="http://www.baidu.com的时候,此时/">www.baidu.com的时候，此时</a>(?&lt;!com)匹配m后面的位置，此时此位置的前面是com匹配直接失败,接着.</em>?匹配行末尾，(?&lt;!com)匹配$后面的位置，显然这次也失败了，所以整个全局匹配都失败。  <a target="_blank" rel="noopener" href="http://www.123.com被排除到匹配之外.这里的.*后面加不加问号结果都一样./">www.123.com被排除到匹配之外。这里的.*后面加不加问号结果都一样。</a></p>
+<h3 id="查找不含有if的行"><a href="#查找不含有if的行" class="headerlink" title="查找不含有if的行"></a>查找不含有if的行</h3><p>if (a&gt;b)<br>printf(“hello”);<br>else if(a&lt;b)<br>printf(“hello2”);<br>else<br>printf(“hello3”);</p>
+<p>正则 ^([^f]|[^i]f)+$<br>其实这个匹配也是一个排除型字符串的匹配，但是不同于上面两种，因为这里的if可能既不在行开头，也不在行结尾，而是在字符串中间这样就给匹配带来了麻烦，在正则表达式中没有提供类似排除的功能。我们最容易想到的就是下面的正则：<br>^[^if]+$ 这种写法看起来是那么回事，但是排除型字符组排除的是i和f两个字符，而不是if这个字符串，所以这个正则表达式匹配的是那些既没有i字符也不包含f字符的字符串。但是如果字符串中有一个i或多个i或者有一个或多个f，或者i和f字符都有只不过没有连在一起。这些情况都是我们需要匹配的情况，而我们不能匹配的情况是那些包含if字符串的行，而不是包含i或f字符的行，所以这种写法漏洞很大。</p>
+<p>^.<em>(?!if).</em>$ 这种写法使用了零宽度断言，表面意思看起来好像是说 任意字符+非if+任意字符 组成了整个字符串，但是仔细研究匹配过程就知道这个是错的，(?if)匹配的是一个位置，所以对于字符串aifb他也是可以匹配到的，而实际上这样的字符正是我们不要的。按照这个正则表达式，对于aifb 首先匹配行首，其次.*是贪婪模式(匹配优先)，会一直匹配到字符串的末尾(此时传动装置定位在$位置前面)，此时(?!if)需要匹配一个位置，这个位置的后面不能是if，这个时候正好位置在b字符的后面，符合匹配条件，紧接着匹配行尾，到这里整个全局匹配成功。</p>
+<p>也就是说对于一个字符串例如我要排除abc这个字串，那么对于任意一个字符串   helloworld abc helloworld 在匹配的时候(?!abc)可以匹配h、e、l、l、o、w、o、r、l、d等这些字符后面的位置，都是成功的。所以匹配根本还没有进行到abc这个地方，(?!abc)就会匹配成功。这个时候根本起不到排除的作用，为什么上面的第1和第2个例子可以呢，因为他们的位置有行首和行尾限定。例如我要匹配行首不是abc的话，那么此时^(?!abc) 这个时候(?!abc)实际上在匹配的时候其传动装置的位置被行首进行了限定,所以对于那些以abc开头的字符串来说就会匹配失败了。</p>
+<p>对于正则表达式^.<em>(?!abc).</em>$怎么能让第一个.*匹配到 helloworldabcxxx中的helloworld的问题。</p>
+<p>对于上面的题目，我们的答案是^([^f]|[^i]f)+$  其实就将所有的匹配分成了2种情况，一种情况是假设字符串中没有f字符，    自然就不可能有if字符串了，这种情况下匹配的字符串中是不可能有if的。第二种情况就是有f字符，但是我们要求此时f的前面不能是i，所以在有f和没有f两种情况都考虑到的情况下，这个正则就应该可以满足所有的情况了。</p>
+<p>其实这个问题的解答是不完美的，对于排除的字符串if只有2个字符i和f字符，我们可以使用这种方式，但是如果我们要排除的是字符串helloworld，这种方法显然就不实用了，那要考虑到多少种情况呢?</p>
+<p>排除不含有某字符串的最终方案：在这种情况下我们使用  ^(?!.<em>helloworld).</em>$  正则表达式  我们将第一个.*移到了零宽度断言的里面。在匹配的时候首先匹配行首的位置，然后接下来是匹配行首后面的位置，要求此位置的后面不能是    .*helloworld 匹配的字符串，说白了要求此位置的后面不能是xxxxxxxxxxxxxxxxxxhelloworld 类似的字符串，这样就排除了从行首开始后面含有helloworld的情况了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hahaliu005.github.io/2016/11/16/2016/11/RegularExpressionExcludeWord/" data-id="clb0tiuuz004mg3on9kqa87x6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Copied/" rel="tag">Copied</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RegularExpression/" rel="tag">RegularExpression</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/16/2016/11/GetConnectionCount/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          获取端口的连接数量
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/14/2016/11/ChangeFirewalldToIptablesInCentos7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Change firewalld to iptables in centos7</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/" rel="tag">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/" rel="tag">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Certbot/" rel="tag">Certbot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome/" rel="tag">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Composer/" rel="tag">Composer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Copied/" rel="tag">Copied</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curl/" rel="tag">Curl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DataStructure/" rel="tag">DataStructure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editor/" rel="tag">Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Erlang/" rel="tag">Erlang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Haproxy/" rel="tag">Haproxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Influxdb/" rel="tag">Influxdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ingress/" rel="tag">Ingress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iptables/" rel="tag">Iptables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JQuery/" rel="tag">JQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubespray/" rel="tag">Kubespray</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/" rel="tag">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logrotate/" rel="tag">Logrotate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mesos/" rel="tag">Mesos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Minikube/" rel="tag">Minikube</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NFS/" rel="tag">NFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Openresty/" rel="tag">Openresty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plupload/" rel="tag">Plupload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RegularExpression/" rel="tag">RegularExpression</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rsync/" rel="tag">Rsync</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby/" rel="tag">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/" rel="tag">SSH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervisor/" rel="tag">Supervisor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Systemctl/" rel="tag">Systemctl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tmux/" rel="tag">Tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vagrant/" rel="tag">Vagrant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/" rel="tag">Vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Virtualbox/" rel="tag">Virtualbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudioCode/" rel="tag">VisualStudioCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zsh/" rel="tag">Zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 12.5px;">Algorithm</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 10px;">AndroidStudio</a> <a href="/tags/C/" style="font-size: 17.5px;">C</a> <a href="/tags/CSS/" style="font-size: 14.17px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 14.17px;">CentOS</a> <a href="/tags/Certbot/" style="font-size: 10px;">Certbot</a> <a href="/tags/Chrome/" style="font-size: 11.67px;">Chrome</a> <a href="/tags/Composer/" style="font-size: 10px;">Composer</a> <a href="/tags/Copied/" style="font-size: 14.17px;">Copied</a> <a href="/tags/Curl/" style="font-size: 10px;">Curl</a> <a href="/tags/DataStructure/" style="font-size: 16.67px;">DataStructure</a> <a href="/tags/Design-Pattern/" style="font-size: 18.33px;">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 15.83px;">Docker</a> <a href="/tags/Editor/" style="font-size: 10px;">Editor</a> <a href="/tags/Elasticsearch/" style="font-size: 10px;">Elasticsearch</a> <a href="/tags/Erlang/" style="font-size: 10px;">Erlang</a> <a href="/tags/Git/" style="font-size: 11.67px;">Git</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/Haproxy/" style="font-size: 10px;">Haproxy</a> <a href="/tags/Influxdb/" style="font-size: 10px;">Influxdb</a> <a href="/tags/Ingress/" style="font-size: 10px;">Ingress</a> <a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/JQuery/" style="font-size: 11.67px;">JQuery</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 14.17px;">Javascript</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Kubernetes/" style="font-size: 10.83px;">Kubernetes</a> <a href="/tags/Kubespray/" style="font-size: 10px;">Kubespray</a> <a href="/tags/Laravel/" style="font-size: 14.17px;">Laravel</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Logrotate/" style="font-size: 10px;">Logrotate</a> <a href="/tags/Lua/" style="font-size: 10px;">Lua</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 15px;">MacOS</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Minikube/" style="font-size: 10px;">Minikube</a> <a href="/tags/Mysql/" style="font-size: 15.83px;">Mysql</a> <a href="/tags/NFS/" style="font-size: 10.83px;">NFS</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10.83px;">Nodejs</a> <a href="/tags/Openresty/" style="font-size: 13.33px;">Openresty</a> <a href="/tags/PHP/" style="font-size: 19.17px;">PHP</a> <a href="/tags/Plupload/" style="font-size: 10px;">Plupload</a> <a href="/tags/Redis/" style="font-size: 11.67px;">Redis</a> <a href="/tags/RegularExpression/" style="font-size: 10px;">RegularExpression</a> <a href="/tags/Rsync/" style="font-size: 10px;">Rsync</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SSH/" style="font-size: 13.33px;">SSH</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Supervisor/" style="font-size: 10px;">Supervisor</a> <a href="/tags/Systemctl/" style="font-size: 10px;">Systemctl</a> <a href="/tags/Tmux/" style="font-size: 10.83px;">Tmux</a> <a href="/tags/Ubuntu/" style="font-size: 12.5px;">Ubuntu</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/Vagrant/" style="font-size: 10px;">Vagrant</a> <a href="/tags/Vim/" style="font-size: 10.83px;">Vim</a> <a href="/tags/VirtualBox/" style="font-size: 11.67px;">VirtualBox</a> <a href="/tags/Virtualbox/" style="font-size: 10.83px;">Virtualbox</a> <a href="/tags/VisualStudioCode/" style="font-size: 10px;">VisualStudioCode</a> <a href="/tags/Zsh/" style="font-size: 10px;">Zsh</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/21/2021/12/ListeningPort/">Get Application Listening Port</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/11/2021/11/ChromeFixCertInvalid/">Chrome Fix NET::ERR_CERT_INVALID Cann&#39;t Access Site</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/22/2021/08/GitInstall/">Git Install</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/22/2021/08/JavaOpenJDKInstall/">Java OpenJDK Install</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/15/2021/08/IngressNginxConfigration/">Ingress nginx configration</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Brady Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//cdn.jsdelivr.net/npm/jquery@2.2.3/dist/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
