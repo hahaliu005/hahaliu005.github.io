@@ -16,3 +16,8 @@ yum install -y java-11-openjdk java-11-openjdk-devel
 ```
 yum install -y java-17-openjdk java-17-openjdk-devel
 ```
+
+# For Ubuntu System
+```
+sudo apt install -y openjdk-17-jdk openjdk-17-jre
+```

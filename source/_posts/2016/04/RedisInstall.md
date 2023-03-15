@@ -19,3 +19,18 @@ sudo make install
 ```
 sudo ./utils/install_server.sh
 ```
+
+## For Ubuntu
+Tutorial [link](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-22-04)
+
+And official [link](https://redis.io/docs/getting-started/installation/install-redis-on-linux/) to install newest version
+```
+sudo apt install lsb-release
+
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+
+sudo apt-get update
+sudo apt-get install redis
+```

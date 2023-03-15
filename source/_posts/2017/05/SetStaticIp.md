@@ -67,3 +67,23 @@ IPADDR3=192.168.1.103
 IPADDR4=192.168.1.104
 NETMASK=255.255.255.0
 ```
+
+# For Ubuntu
+Ubuntu use netplan to set network.
+Change /etc/netplan/xxxx.yaml file
+```
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp0s5:
+      dhcp4: no
+      addresses:
+        - 10.211.55.112/24
+      gateway4: 10.211.55.1
+      nameservers:
+          addresses: [10.211.55.1]
+  version: 2
+```
+enp0s5 is the interface name, can check use `ip addr`
+
+Then apply change `sudo netplan apply`

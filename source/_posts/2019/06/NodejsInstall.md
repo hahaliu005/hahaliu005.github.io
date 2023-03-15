@@ -12,3 +12,11 @@ yum -y install nodejs
 ```
 
 Now stable recommend is 14.x
+
+<!-- more -->
+
+## For Ubuntu
+Tutorial [link](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
+```
+sudo apt install nodejs npm
+```

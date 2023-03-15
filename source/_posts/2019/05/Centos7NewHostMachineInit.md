@@ -111,3 +111,31 @@ sestatus
 ```
 yum install -y nfs-utils cachefilesd
 ```
+
+## Ubuntu
+
+### Set up ufw, allow base ports
+```
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw enable
+```
+
+### Install zsh and ohmyzsh
+```
+sudo apt install zsh -y
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+### Set timezone
+```
+sudo timedatectl set-timezone Asia/Shanghai
+```
+
+### Install build essential
+```
+sudo apt install build-essential -y
+```
+
+### Copy vim config to .vimrc, ref to VimConfig.md

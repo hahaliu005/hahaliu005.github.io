@@ -27,3 +27,21 @@ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 composer config -g --unset repos.packagist # 取消全局配置
 ```
+
+
+## Ubuntu System
+Ubuntu hava php7.4 repo itself
+```
+sudo apt -y install php7.4 php7.4-fpm php7.4-cli php7.4-json php7.4-common php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath
+```
+
+### Composer install
+```
+sudo php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+sudo php -r "unlink('composer-setup.php');"
+```
+
+### 注意事项
+- 也许php默认配置使用apache用户组，如果更换运行服务的用户名与用户组，请留意文件夹权限，如/var/lib/php中的session,opcache可能不可写，可以更改/var/lib/php的用户组
+
