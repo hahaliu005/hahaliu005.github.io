@@ -71,3 +71,6 @@ Auto start nfs for mac
 sudo nfsd enable
 sudo nfsd start
 ```
+
+# For Ubuntu
+Ref [link](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-20-04)

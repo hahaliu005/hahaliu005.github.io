@@ -37,6 +37,7 @@ rsync -av --password-file=/etc/rsyncd.pass test@[hostIp]::test /data/test
 ```
 > /etc/rsyncd.pass 仅需要放置密码文本
 > Notice: /etc/rsyncd.pass store the password of test user, you must set permission to 600 `chmod 600 /etc/rsyncd.pass`
+> --compress, -z           compress file data during the transfer
 
 
 传输时输出详细信息，传输时压缩，删除的文件还会保留在备份服务器的文件夹中，-a相当于-rlptgoD

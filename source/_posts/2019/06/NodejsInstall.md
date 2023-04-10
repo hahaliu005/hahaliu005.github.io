@@ -18,5 +18,7 @@ Now stable recommend is 14.x
 ## For Ubuntu
 Tutorial [link](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
 ```
-sudo apt install nodejs npm
+curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
+sudo bash /tmp/nodesource_setup.sh
+sudo apt install nodejs
 ```

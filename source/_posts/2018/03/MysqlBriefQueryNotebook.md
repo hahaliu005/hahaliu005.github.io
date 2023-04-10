@@ -12,6 +12,12 @@ show table status like 'table_name';
 
 <!-- more -->
 
+Run query directly in command
+```
+mysql -h localhost -p DatabaseName -e 'QueryHere;'
+```
+
+
 Create database with default charset
 ```
 CREATE DATABASE test DEFAULT CHARACTER SET UTF8mb4 DEFAULT COLLATE utf8mb4_general_ci;
@@ -82,3 +88,9 @@ SET GLOBAL general_log = 'ON';
 tail -f [general_log_file]
 SET GLOBAL general_log = 'OFF';
 ```
+
+Backup db
+```
+mysqldump -h localhost -u root -p dbname > xxx.sql
+```
+- if you db from different timezone , be care of add --skip-tz-utc 

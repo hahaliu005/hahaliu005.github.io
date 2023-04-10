@@ -47,4 +47,13 @@ Install
 brew install elastic/tap/elasticsearch-full
 ```
 
+## For Ubuntu
 
+Follow this [link](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-22-04) to install Elasticsearch
+
+Follow this [link](https://www.elastic.co/guide/en/elasticsearch/reference/7.16/security-minimal-setup.html) to set minimail security for Elasticsearch
+
+Check with username and password
+```
+curl -X GET -u elastic 'http://localhost:9200'
+```

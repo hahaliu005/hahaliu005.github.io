@@ -34,3 +34,5 @@ echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://pack
 sudo apt-get update
 sudo apt-get install redis
 ```
+
+Remember to set requirepass in /etc/redis/redis.conf

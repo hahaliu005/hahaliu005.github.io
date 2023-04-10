@@ -30,7 +30,13 @@ composer config -g --unset repos.packagist # 取消全局配置
 
 
 ## Ubuntu System
-Ubuntu hava php7.4 repo itself
+Above Ubuntu 22.04 , there's no 7.4 in default repo anymore, need to add PPA
+```
+sudo apt install -y software-properties-common
+sudo add-apt-repository ppa:ondrej/php -y
+```
+
+Below Ubuntu 22.04, can install php7.4 directly
 ```
 sudo apt -y install php7.4 php7.4-fpm php7.4-cli php7.4-json php7.4-common php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath
 ```

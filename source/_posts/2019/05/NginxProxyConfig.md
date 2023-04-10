@@ -53,3 +53,6 @@ proxy_pass http://127.0.0.1:1080;
 proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection "upgrade";
 ```
+
+- 400 Request Header Or Cookie Too Large
+If you proxy localhost, you may occur this issue, please add `proxy_set_header Host $proxy_host;`

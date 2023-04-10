@@ -49,7 +49,7 @@ Tutorial [link](https://www.digitalocean.com/community/tutorials/how-to-install-
 
 
 ```
-sudo apt install mysql-server
+sudo apt install -y mysql-server
 ```
 
 Change mysql password
