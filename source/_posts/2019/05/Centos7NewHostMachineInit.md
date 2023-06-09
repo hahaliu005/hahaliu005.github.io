@@ -138,6 +138,10 @@ sudo ufw enable
 sudo apt install -y zsh && \
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+Change theme in ~/.zshrc
+```
+ZSH_THEME="bira"
+```
 
 ### Set timezone
 ```
