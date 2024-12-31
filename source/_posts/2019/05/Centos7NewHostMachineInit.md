@@ -145,7 +145,11 @@ ZSH_THEME="bira"
 
 ### Set timezone
 ```
-sudo timedatectl set-timezone Asia/Shanghai
+sudo timedatectl set-timezone Asia/Shanghai 
+```
+For ubuntu24.04 it do not change /etc/timezone sync, but java may use it to set timezone, so manually change /etc/timezone.
+```
+Asia/Shanghai
 ```
 
-### Copy vim config to .vimrc, ref to VimConfig.md
+### Copy vim config to .vimrc, ref to VimConfig.md, and copy to root `sudo scp .vimrc /root`

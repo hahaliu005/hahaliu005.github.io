@@ -79,7 +79,9 @@ network:
       dhcp4: no
       addresses:
         - 10.211.55.112/24
-      gateway4: 10.211.55.1
+      routes:
+        - to: default
+          via: 10.211.55.1
       nameservers:
           addresses: [10.211.55.1]
   version: 2

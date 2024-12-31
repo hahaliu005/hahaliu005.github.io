@@ -18,6 +18,10 @@ date: 2022-11-09
 ### Issue
 ## 突然无法连接
 Maybe acme.sh 's key was expired, Check the process of generate key in xui install webpage
+```
+~/.acme.sh/acme.sh  --issue -d yourdomain.com --standalone --force
+~/.acme.sh/acme.sh --installcert -d yourdomain.com --key-file /root/private.key --fullchain-file /root/cert.crt
+```
 
 
 前言
