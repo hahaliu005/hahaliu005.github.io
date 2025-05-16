@@ -110,3 +110,48 @@ V2-ui – X-ui数据迁移
 
 x-ui v2-ui
 迁移成功后请关闭 v2-ui 并且重启 x-ui，否则 v2-ui 的 inbound 会与 x-ui 的 inbound 会产生端口冲突，若是有问题，请看 视频教程
+
+
+# Simple flow
+
+Enable or install bbr
+```
+wget --no-check-certificate -O /opt/bbr.sh https://github.com/teddysun/across/raw/master/bbr.sh
+chmod 755 /opt/bbr.sh
+/opt/bbr.sh
+```
+
+Check bbr is enabled
+```
+sysctl net.ipv4.tcp_available_congestion_control
+sysctl net.ipv4.tcp_congestion_control
+```
+
+Update system
+```
+apt update -y
+apt install -y curl socat
+```
+
+Install X-ui
+```
+bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh)
+```
+
+Register ssl(Before this bind your domain to cloudflare)
+```
+curl https://get.acme.sh | sh
+~/.acme.sh/acme.sh --register-account -m xxxx@xxxx.com
+~/.acme.sh/acme.sh  --issue -d mydomain.com   --standalone
+~/.acme.sh/acme.sh --installcert -d mydomain.com --key-file /root/private.key --fullchain-file /root/cert.crt
+```
+
+Access x-ui panel eg: xxx.com:9134, create inbound you only change below items , keep others default
+remark: Trojan
+protocol: trojan
+port: 443
+add user -> keep default passwd and email
+tls: enable
+server name: your ssled domain name xxxx.com
+path to cert: /root/cert.crt
+path to key: /root/private.key
